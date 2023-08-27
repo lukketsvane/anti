@@ -7,8 +7,8 @@ import Link from "next/link";
 import { Article } from "./article"; // Import the Article component
 
 const navigation = [
-  { name: "Projects", href: "/projects" }
-  // { name: "Contact", href: "/contact" },
+  { name: "Projects", href: "/projects" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function ProjectsLayout({

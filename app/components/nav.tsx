@@ -36,6 +36,9 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
       >
         <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
           <div className={`flex justify-between gap-8 ${isIntersecting ? "text-white" : "text-black"}`}>
+          <button onClick={toggleDarkMode} className={`duration-200 ${isIntersecting ? "text-white" : "text-black"} focus:outline-none`}>
+            {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+          </button>
             <Link href="/projects" className={`duration-200 hover:text-zinc-100 ${isIntersecting ? "text-white" : "text-black"}`}>
               Projects
             </Link>
@@ -44,9 +47,7 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
             </Link>
           </div>
 
-          <button onClick={toggleDarkMode} className={`duration-200 ${isIntersecting ? "text-white" : "text-black"} focus:outline-none`}>
-            {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-          </button>
+
 
           <Link href="/" className={`duration-200 ${isIntersecting ? "text-white" : "text-black"} hover:text-zinc-100`}>
             <ArrowLeft className="w-6 h-6" />

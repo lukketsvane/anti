@@ -14,7 +14,6 @@
 
 # production
 /build
-.contentlayer
 
 # misc
 .DS_Store
@@ -28,9 +27,13 @@ yarn-error.log*
 
 # local env files
 .env*.local
+/.env
+*.env
+.env
 
 # vercel
 .vercel
+*.env
 
 # typescript
 *.tsbuildinfo
