@@ -4,17 +4,14 @@
 import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import Link from "next/link";
-import { Article } from "./article"; // Import the Article component
 
 const navigation = [
   { name: "Projects", href: "/projects" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
-  { name: "Gallery", href: "/gallery" }, // Add the Gallery link to navigation
 ];
 
-export default function ProjectsLayout({
-  children,
-}: { children: React.ReactNode }) {
+export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
@@ -40,19 +37,20 @@ export default function ProjectsLayout({
           }`}
         >
           <div className="container flex items-center justify-between p-6 mx-auto">
-            <Link href="/" className={`duration-200 ${darkMode ? "text-white" : "text-whiute"} hover:text-zinc-100`}>
+            <Link href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
+                className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`}
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke={darkMode ? "white" : "black"}
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  className={darkMode ? "text-white" : "text-black"}
                 />
               </svg>
             </Link>
@@ -62,7 +60,7 @@ export default function ProjectsLayout({
               </button>
               {navigation.map((item) => (
                 <Link key={item.href} href={item.href}>
-                  <span className={`duration-200 hover:text-zinc-100`}>
+                  <span className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
                     {item.name}
                   </span>
                 </Link>
