@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Eye } from "lucide-react";
 
 type Props = {
-  project: Project;
   views: number;
 };
 
@@ -32,7 +31,7 @@ export const Article: React.FC<Props> = ({ project, views }) => {
         <h2 className="z-20 text-xl font-medium lg:text-3xl font-display">
           {project.title}
         </h2>
-        <p className="z-20 mt-4 text-sm">{project.description}</p>
+        <p className="z-20 mt-4 text-sm text-white">{project.description}</p>
       </article>
     </Link>
   );
