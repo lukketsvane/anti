@@ -89,7 +89,7 @@ export default async function ProjectsPage() {
                 </p>
                 <div className="absolute bottom-4 md:bottom-8">
                   <p
-                    className={`hidden ${views[featured.slug] ? "text-zinc-200 hover:text-zinc-50" : "hover:text-gray-300"} lg:block`}
+                    className={`hidden ${views[featured.slug] ? "text-zinc-00 hover:text-zinc-5" : "hover:text-gray-800"} lg:block`}
                   >
                     Read more <span aria-hidden="true">&rarr;</span>
                   </p>
