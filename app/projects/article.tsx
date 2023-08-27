@@ -1,14 +1,16 @@
 
-import React from "react";
+import type { Project } from "@/.contentlayer/generated";
 import Link from "next/link";
 import { Eye } from "lucide-react";
 
 type Props = {
-  views: number;
+	project: Project;
+	views: number;
 };
 
 export const Article: React.FC<Props> = ({ project, views }) => {
-  return (
+	return (
+
     <Link href={`/projects/${project.slug}`}>
       <article className="p-4 md:p-8">
         <div className="flex justify-between gap-2 items-center">
