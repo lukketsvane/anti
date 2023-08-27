@@ -45,6 +45,9 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
             <Link href="/contact" className={`duration-200 hover:text-zinc-100 ${isIntersecting ? "text-white" : "text-black"}`}>
               Contact
             </Link>
+            <Link href="/gallery" className={`duration-200 hover:text-zinc-100 ${isIntersecting ? "text-white" : "text-black"}`}>
+              Gallery
+            </Link>
           </div>
 
 

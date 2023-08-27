@@ -9,6 +9,7 @@ import { Article } from "./article"; // Import the Article component
 const navigation = [
   { name: "Projects", href: "/projects" },
   { name: "Contact", href: "/contact" },
+  { name: "Gallery", href: "/gallery" }, // Add the Gallery link to navigation
 ];
 
 export default function ProjectsLayout({

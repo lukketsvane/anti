@@ -8,6 +8,8 @@ import { Moon, Sun } from "lucide-react";
 const navigation = [
 	{ name: "Projects", href: "/projects" },
 	{ name: "Contact", href: "/contact" },
+	{ name: "Gallery", href: "/gallery" },
+
 ];
 
 export default function Home() {
