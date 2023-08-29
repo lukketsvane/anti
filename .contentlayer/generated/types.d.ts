@@ -8,6 +8,33 @@ export { isType } from 'contentlayer/client'
 export type { Markdown, MDX, ImageFieldData, IsoDateTimeString }
 
 /** Document types */
+export type GalleryImage = {
+  /** File path relative to `contentDirPath` */
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'GalleryImage'
+  title: string
+  description?: string | undefined
+  image: string
+  /** MDX file body */
+  body: MDX
+  path: string
+  slug: string
+}
+
+export type GalleryProject = {
+  /** File path relative to `contentDirPath` */
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'GalleryProject'
+  title: string
+  image: string
+  /** MDX file body */
+  body: MDX
+  path: string
+  slug: string
+}
+
 export type Page = {
   /** File path relative to `contentDirPath` */
   _id: string
@@ -46,8 +73,8 @@ export type Project = {
 export type AllTypes = DocumentTypes | NestedTypes
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames
 
-export type DocumentTypes = Page | Project
-export type DocumentTypeNames = 'Page' | 'Project'
+export type DocumentTypes = GalleryImage | GalleryProject | Page | Project
+export type DocumentTypeNames = 'GalleryImage' | 'GalleryProject' | 'Page' | 'Project'
 
 export type NestedTypes = never
 export type NestedTypeNames = never
@@ -56,6 +83,8 @@ export type DataExports = {
   allDocuments: DocumentTypes[]
   allPages: Page[]
   allProjects: Project[]
+  allGalleryImages: GalleryImage[]
+  allGalleryProjects: GalleryProject[]
 }
 
 
@@ -75,6 +104,8 @@ declare global {
 }
 
 export type DocumentTypeMap = {
+  GalleryImage: GalleryImage
+  GalleryProject: GalleryProject
   Page: Page
   Project: Project
 }
