@@ -2,12 +2,12 @@
 
 "use client";
 import React, { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Grid } from "lucide-react";
 import Link from "next/link";
 
 const navigation = [
+  { icon: <Grid size={20} />, href: '/gallery' },
   { name: "Projects", href: "/projects" },
-  { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -60,9 +60,9 @@ export default function ProjectsLayout({ children }: { children: React.ReactNode
               </button>
               {navigation.map((item) => (
                 <Link key={item.href} href={item.href}>
-                  <span className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
-                    {item.name}
-                  </span>
+                  <div className={`duration-200 hover:text-zinc-100 ${darkMode ? 'text-white' : 'text-black'}`}>
+                    {item.icon || item.name}
+                  </div>
                 </Link>
               ))}
             </div>

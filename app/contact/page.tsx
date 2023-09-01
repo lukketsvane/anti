@@ -2,12 +2,13 @@
 
 "use client";
 import React, { useEffect, useState } from "react";
-import { Github, Mail, Twitter, Sun, Moon } from "lucide-react";
+import { Github, Mail, Twitter, Sun, Moon, Grid } from "lucide-react";
+
 import Link from "next/link";
 
 const navigation = [
+  { icon: <Grid size={20} />, href: '/gallery' },
   { name: 'Projects', href: '/projects' },
-  { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -53,15 +54,17 @@ export default function ContactPage() {
         <div className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 border-b ${darkMode ? 'bg-zinc-900/0 border-transparent' : 'bg-zinc-900/500 border-zinc-800'}`}>
           <div className="container flex items-center justify-between p-6 mx-auto">
             <Link href="/">
-              Home
+              <svg xmlns="http://www.w3.org/2000/svg" className={`w-6 h-6 ${darkMode ? 'text-white' : 'text-black'}`} fill="none" viewBox="0 0 24 24" stroke={darkMode ? 'white' : 'black'}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
             </Link>
             <div className={`flex justify-end gap-8 ${darkMode ? 'text-white' : 'text-black'}`}>
               <button onClick={toggleDarkMode}>
                 {darkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
-              {navigation.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  {item.name}
+              {navigation.map((item, index) => (
+                <Link key={index} href={item.href}>
+                  {item.name || item.icon}
                 </Link>
               ))}
             </div>
@@ -69,7 +72,7 @@ export default function ContactPage() {
         </div>
       </header>
       <div className="container px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
-        <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+        <h2 className={`mb-4 text-3xl font-bold tracking-tight sm:text-4xl ${darkMode ? 'text-white' : 'text-black'}`}>
           Contact
         </h2>
         <p className="mt-4 text-zinc-400">
@@ -85,10 +88,10 @@ export default function ContactPage() {
                 </div>
               </Link>
               <div className="z-10 flex flex-col items-center">
-                <span className={`text-xl font-medium duration-150 lg:text-3xl text-zinc-200 group-hover:text-white font-display`}>
+                <span className={`text-xl font-medium duration-150 lg:text-3xl ${darkMode ? 'text-zinc-200 group-hover:text-white' : 'text-black group-hover:text-zinc-200'} font-display`}>
                   {s.handle}
                 </span>
-                <span className={`mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200`}>
+                <span className={`mt-4 text-sm text-center duration-1000 ${darkMode ? 'text-zinc-400 group-hover:text-zinc-200' : 'text-black group-hover:text-zinc-200'}`}>
                   {s.label}
                 </span>
               </div>
