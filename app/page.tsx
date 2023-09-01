@@ -6,9 +6,10 @@ import Particles from "./components/particles";
 import { Moon, Sun, Grid } from "lucide-react";
 
 const navigation = [
-  { icon: <Grid size={20} />, href: '/gallery', name: '' },
   { name: "Projects", href: "/projects" },
   { name: "Contact", href: "/contact" },
+  { icon: <Grid size={20} />, href: '/gallery', name: '' },
+
 ];
 
 export default function Home() {
