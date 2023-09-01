@@ -3,7 +3,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Moon, Sun, Grid } from 'lucide-react';
+import { Moon, Sun, Grid, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 const navigation = [
@@ -37,7 +37,7 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
         <div className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 border-b ${darkMode ? 'bg-zinc-900/0 border-transparent' : 'bg-zinc-900/500 border-zinc-800'}`}>
           <div className="container flex items-center justify-between p-6 mx-auto">
             <Link href="/">
-              <Grid size={20} className={`w-6 h-6 ${darkMode ? 'text-white' : 'text-black'}`} />
+              <ArrowLeft className={`w-6 h-6 ${darkMode ? 'text-white' : 'text-black'}`} />
             </Link>
             <div className={`flex justify-end gap-8 ${darkMode ? 'text-white' : 'text-black'}`}>
               <button onClick={toggleDarkMode}>

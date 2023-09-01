@@ -2,7 +2,7 @@
 
 "use client";
 import React, { useEffect, useState } from "react";
-import { Moon, Sun, Grid } from "lucide-react";
+import { Moon, Sun, Grid, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 const navigation = [
@@ -38,21 +38,7 @@ export default function ProjectsLayout({ children }: { children: React.ReactNode
         >
           <div className="container flex items-center justify-between p-6 mx-auto">
             <Link href="/">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke={darkMode ? "white" : "black"}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                  className={darkMode ? "text-white" : "text-black"}
-                />
-              </svg>
+              <ArrowLeft className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} />
             </Link>
             <div className={`flex justify-end gap-8 ${darkMode ? "text-white" : "text-black"}`}>
               <button onClick={toggleDarkMode}>
