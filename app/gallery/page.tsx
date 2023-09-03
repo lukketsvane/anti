@@ -20,10 +20,7 @@ const GalleryPage = () => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [focusImage]);
+
 
   return (
     <div className="flex flex-wrap items-center justify-center">
