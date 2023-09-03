@@ -1,4 +1,4 @@
-// ./app/gallery/page.tsx
+
 "use client";
 import React, { useState, useEffect, KeyboardEvent } from 'react';
 import { allGalleryImages } from 'contentlayer/generated';
@@ -9,10 +9,12 @@ const GalleryPage = () => {
   const [focusImage, setFocusImage] = useState<number | null>(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'ArrowRight' && focusImage !== null && focusImage < allGalleryImages.length - 1) {
+    if (focusImage === null) return;
+
+    if (event.key === 'ArrowRight' && focusImage < allGalleryImages.length - 1) {
       setFocusImage(focusImage + 1);
     }
-    if (event.key === 'ArrowLeft' && focusImage !== null && focusImage > 0) {
+    if (event.key === 'ArrowLeft' && focusImage > 0) {
       setFocusImage(focusImage - 1);
     }
     if (event.key === 'Escape') {
@@ -20,7 +22,12 @@ const GalleryPage = () => {
     }
   };
 
-
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [focusImage]);
 
   return (
     <div className="flex flex-wrap items-center justify-center">
@@ -36,21 +43,13 @@ const GalleryPage = () => {
         </div>
       )) ?? 'No images found.'}
 
-{focusImage !== null && (
+      {focusImage !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-10 bg-black bg-opacity-70" onClick={() => setFocusImage(null)}>
-          <div className="relative w-full h-full">
-            <Image 
-              src={allGalleryImages[focusImage].image} 
-              alt={allGalleryImages[focusImage].title} 
-              objectFit="contain" 
-              layout="fill" 
-            />
-          </div>
+          <Image src={allGalleryImages[focusImage].image} alt={allGalleryImages[focusImage].title} objectFit="contain" layout="fill" className="w-full h-full" />
         </div>
       )}
     </div>
   );
 };
-
 
 export default GalleryPage;
