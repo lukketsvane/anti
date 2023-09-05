@@ -1,12 +1,9 @@
-"use client";
-
 import React, { useEffect, useRef } from 'react';
 
 interface ConstellationProps {
-    darkMode: boolean;
-    disableLinks?: boolean;
-  }
-  
+  darkMode: boolean;
+  disableLinks?: boolean;
+}
 
 const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -28,32 +25,37 @@ const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks })
       stars.forEach((star, i) => {
         const anchor = document.createElement('a');
         anchor.style.position = 'fixed';
-        anchor.style.left = `calc(40% + ${star.x * 18}px)`; // Scaled down by 10%
-        anchor.style.top = `calc(30% - ${star.y * 18}px)`; // Scaled down by 10%
-        anchor.style.width = '9px'; // Scaled down by 10%
-        anchor.style.height = '9px'; // Scaled down by 10%
+        anchor.style.left = `calc(40% + ${star.x * 18}px)`;
+        anchor.style.top = `calc(30% - ${star.y * 18}px)`;
+        anchor.style.width = '30px'; // Increased the clickable area
+        anchor.style.height = '30px'; // Increased the clickable area
         anchor.style.backgroundColor = 'transparent';
         anchor.style.pointerEvents = disableLinks ? 'none' : 'auto';
         anchor.style.zIndex = '11';
+        anchor.style.cursor = 'default';
         anchor.href = disableLinks ? '#' : star.href;
         anchor.id = `star-${i}`;
 
         const dot = document.createElement('div');
-        dot.style.width = '2.25px'; // Scaled down by 10%
-        dot.style.height = '2.25px'; // Scaled down by 10%
+        dot.style.width = '2.25px';
+        dot.style.height = '2.25px';
         dot.style.backgroundColor = 'white';
         dot.style.borderRadius = '50%';
+        dot.style.position = 'absolute';
+        dot.style.left = '50%';
+        dot.style.top = '50%';
+        dot.style.transform = 'translate(-50%, -50%)';
 
         const nameSpan = document.createElement('span');
         nameSpan.textContent = star.name;
         nameSpan.style.color = 'white';
-        nameSpan.style.fontSize = '10px'; // Made text smaller
-        nameSpan.style.fontWeight = '300'; // Made text thinner
+        nameSpan.style.fontSize = '10px';
+        nameSpan.style.fontWeight = '300';
         nameSpan.style.opacity = '0';
-        nameSpan.style.transition = 'opacity 0.5s ease';
+        nameSpan.style.transition = 'opacity 1.0s ease';
         nameSpan.style.position = 'absolute';
         nameSpan.style.left = '50%';
-        nameSpan.style.bottom = '-20px';
+        nameSpan.style.top = '-10px';
         nameSpan.style.transform = 'translate(-50%, 0)';
         nameSpan.style.whiteSpace = 'nowrap';
 
