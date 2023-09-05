@@ -1,4 +1,8 @@
+"use client";
+
 import React, { useEffect, useRef } from 'react';
+import Link from "next/link";
+
 
 interface ConstellationProps {
   darkMode: boolean;
@@ -6,12 +10,12 @@ interface ConstellationProps {
 }
 
 const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (darkMode) {
-      const stars = [
-        { name: "Deneb", x: -5.4, y: 6.3, href: "/Deneb" },
+    const containerRef = useRef<HTMLDivElement | null>(null);
+  
+    useEffect(() => {
+      if (darkMode) {
+        const stars = [
+          { name: "Deneb", x: -5.4, y: 6.3, href: "/Deneb" },  
         { name: "Sadr", x: -2.7, y: 2.7, href: "/Sadr" },
         { name: "Eta", x: 2.7, y: -1.8, href: "/Eta" },
         { name: "Albireo", x: 6.3, y: -7.2, href: "/Albireo" },
@@ -27,13 +31,12 @@ const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks })
         anchor.style.position = 'fixed';
         anchor.style.left = `calc(40% + ${star.x * 18}px)`;
         anchor.style.top = `calc(30% - ${star.y * 18}px)`;
-        anchor.style.width = '30px'; // Increased the clickable area
-        anchor.style.height = '30px'; // Increased the clickable area
+        anchor.style.width = '30px';
+        anchor.style.height = '30px';
         anchor.style.backgroundColor = 'transparent';
         anchor.style.pointerEvents = disableLinks ? 'none' : 'auto';
         anchor.style.zIndex = '11';
         anchor.style.cursor = 'default';
-        anchor.href = disableLinks ? '#' : star.href;
         anchor.id = `star-${i}`;
 
         const dot = document.createElement('div');
@@ -71,6 +74,12 @@ const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks })
         });
 
         containerRef.current?.appendChild(anchor);
+
+        if (star.href && !disableLinks) {
+          anchor.addEventListener('click', () => {
+            window.location.href = star.href;
+          });
+        }
       });
     }
   }, [darkMode, disableLinks]);
@@ -93,3 +102,6 @@ const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks })
 };
 
 export default Constellation;
+
+
+
