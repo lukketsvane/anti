@@ -4,12 +4,13 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Particles from "./components/particles";
 import { Moon, Sun, Grid } from "lucide-react";
+import Constellation from './components/Constellation';
+
 
 const navigation = [
   { name: "Projects", href: "/projects" },
   { name: "Contact", href: "/contact" },
   { icon: <Grid size={20} />, href: '/gallery', name: '' },
-
 ];
 
 export default function Home() {
@@ -43,6 +44,7 @@ export default function Home() {
           ))}
         </ul>
       </nav>
+
       <div className={`hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
       <Particles
         className={`absolute inset-0 -z-10 animate-fade-in ${darkMode ? "text-white" : "text-black"}`}
@@ -63,7 +65,7 @@ export default function Home() {
             LinkedIn
           </Link>{" "}
           <br />
-          or find me on{" "}
+          or contact me on{" "}
           <Link
             target="_blank"
             href="https://github.com/lukketsvane/"
@@ -71,9 +73,11 @@ export default function Home() {
           >
             GitHub
           </Link>
-          at night.
+          {" "}at night.
         </h2>
       </div>
+      <Constellation />
+
     </div>
   );
 }
