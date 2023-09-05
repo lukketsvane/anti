@@ -1,27 +1,27 @@
-// ./pages/Deneb.tsx
-import React, { useEffect, useState } from 'react';
+"use client";
 
-const Deneb: React.FC = () => {
-  const [expand, setExpand] = useState(false);
 
+import Head from 'next/head';
+import { useEffect } from 'react';
+
+const Deneb = () => {
   useEffect(() => {
-    setExpand(true);
+    // Game initialization logic here (if needed)
   }, []);
 
   return (
-    <div 
-      style={{
-        backgroundColor: 'white',
-        position: 'fixed',
-        borderRadius: '50%',
-        left: 'calc(40% - 5.4 * 18px)',
-        top: 'calc(30% + 6.3 * 18px)',
-        width: expand ? '200vw' : '9px',
-        height: expand ? '200vh' : '9px',
-        transition: 'width 1s ease, height 1s ease',
-        zIndex: 20
-      }}
-    >
+    <div>
+      <Head>
+        <title>Deneb - T-Rex Runner Game</title>
+        <link rel="stylesheet" type="text/css" href="/t-rex-runner/index.css" />
+        <script type="text/javascript" src="/t-rex-runner/index.js"></script>
+      </Head>
+      <main>
+        <h1>Welcome to Deneb!</h1>
+        <div id="game-container">
+          {/* Game will load here */}
+        </div>
+      </main>
     </div>
   );
 };
