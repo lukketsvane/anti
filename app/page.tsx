@@ -1,11 +1,9 @@
 "use client";
-
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Particles from "./components/particles";
 import { Moon, Sun, Grid } from "lucide-react";
 import Constellation from "./components/constellation";
-
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -51,7 +49,7 @@ export default function Home() {
         quantity={100}
       />
       <h1 className={`z-10 text-4xl text-transparent duration-1000 cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ${darkMode ? "bg-white" : "bg-black"}`}>
-      Hello, World!
+        Hello, World!
       </h1>
       <div className={`hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
       <div className="my-16 text-center animate-fade-in">
@@ -76,8 +74,7 @@ export default function Home() {
           {" "}at night.
         </h2>
       </div>
-      <Constellation />
-
+      {darkMode && <Constellation darkMode={darkMode} />}
     </div>
   );
 }
