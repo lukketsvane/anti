@@ -1,26 +1,20 @@
-"use client";
-
-
 import Head from 'next/head';
-import { useEffect } from 'react';
 
 const Deneb = () => {
-  useEffect(() => {
-    // Game initialization logic here (if needed)
-  }, []);
-
   return (
     <div>
       <Head>
         <title>Deneb - T-Rex Runner Game</title>
-        <link rel="stylesheet" type="text/css" href="/t-rex-runner/index.css" />
-        <script type="text/javascript" src="/t-rex-runner/index.js"></script>
+        {/* Remove the following lines because you're going to use an iframe */}
+        {/* <link rel="stylesheet" type="text/css" href="/t-rex-runner/index.css" /> */}
+        {/* <script type="text/javascript" src="/t-rex-runner/index.js"></script> */}
       </Head>
       <main>
-        <h1>Welcome to Deneb!</h1>
-        <div id="game-container">
-          {/* Game will load here */}
-        </div>
+        <iframe 
+          src="/t-rex-runner/index.html" 
+          style={{ width: '100%', height: '600px' }} 
+          frameBorder="0">
+        </iframe>
       </main>
     </div>
   );
