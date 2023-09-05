@@ -5,17 +5,17 @@ import Link from "next/link";
 
 
 interface ConstellationProps {
-  darkMode: boolean;
-  disableLinks?: boolean;
-}
-
-const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks }) => {
+    darkMode: boolean;
+    disableLinks?: boolean;
+  }
+  
+  const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
   
     useEffect(() => {
       if (darkMode) {
         const stars = [
-          { name: "Deneb", x: -5.4, y: 6.3, href: "/Deneb" },  
+    { name: "Deneb", x: -5.4, y: 6.3, href: "/Deneb" },    
         { name: "Sadr", x: -2.7, y: 2.7, href: "/Sadr" },
         { name: "Eta", x: 2.7, y: -1.8, href: "/Eta" },
         { name: "Albireo", x: 6.3, y: -7.2, href: "/Albireo" },
@@ -36,7 +36,6 @@ const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks })
         anchor.style.backgroundColor = 'transparent';
         anchor.style.pointerEvents = disableLinks ? 'none' : 'auto';
         anchor.style.zIndex = '11';
-        anchor.style.cursor = 'default';
         anchor.id = `star-${i}`;
 
         const dot = document.createElement('div');
@@ -66,42 +65,60 @@ const Constellation: React.FC<ConstellationProps> = ({ darkMode, disableLinks })
         anchor.appendChild(nameSpan);
 
         anchor.addEventListener('mouseenter', () => {
-          nameSpan.style.opacity = '1';
-        });
-
-        anchor.addEventListener('mouseleave', () => {
-          nameSpan.style.opacity = '0';
-        });
-
-        containerRef.current?.appendChild(anchor);
-
-        if (star.href && !disableLinks) {
-          anchor.addEventListener('click', () => {
-            window.location.href = star.href;
+            nameSpan.style.opacity = '1';
           });
-        }
-      });
-    }
-  }, [darkMode, disableLinks]);
-
-  return (
-    <div 
-      ref={containerRef} 
-      style={{ 
-        position: 'fixed', 
-        top: '-40%', 
-        left: '-10%', 
-        width: '100%', 
-        height: '100%', 
-        zIndex: 10,
-        pointerEvents: 'none' 
-      }}
-    >
-    </div>
-  );
-};
-
-export default Constellation;
-
-
-
+  
+          anchor.addEventListener('mouseleave', () => {
+            nameSpan.style.opacity = '0';
+          });
+  
+          if (star.name === 'Deneb') {
+            anchor.addEventListener('click', (e) => {
+              e.preventDefault();
+              dot.style.transition = 'width 0.5s ease, height 0.5s ease';
+              dot.style.width = '200.75px';
+              dot.style.height = '200.75px';
+  
+              setTimeout(() => {
+                dot.style.transition = 'width 0.2s ease, height 0.2s ease';
+                dot.style.width = '3000px';
+                dot.style.height = '3000px';
+              }, 500);
+  
+              setTimeout(() => {
+                window.location.href = star.href;
+              }, 600);
+            });
+          } else if (star.href && !disableLinks) {
+            anchor.addEventListener('click', () => {
+              window.location.href = star.href;
+            });
+          }
+  
+          containerRef.current?.appendChild(anchor);
+        });
+      }
+    }, [darkMode, disableLinks]);
+  
+    return (
+      <div
+        ref={containerRef}
+        style={{
+          position: 'fixed',
+          top: '-40%',
+          left: '-10%',
+          width: '100%',
+          height: '100%',
+          zIndex: 10,
+          pointerEvents: 'none'
+        }}
+      >
+      </div>
+    );
+  };
+  
+  export default Constellation;
+  
+  
+  
+  
