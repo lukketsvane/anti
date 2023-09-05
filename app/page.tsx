@@ -49,21 +49,12 @@ export default function Home() {
         quantity={100}
       />
       <h1 className={`z-10 text-4xl text-transparent duration-1000 cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ${darkMode ? "bg-white" : "bg-black"}`}>
-        finne design
+      Hello, World!
       </h1>
       <div className={`hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
       <div className="my-16 text-center animate-fade-in">
         <h2 className={`text-sm ${darkMode ? "text-white" : "text-black"}`}>
-          Hi, my name is Iver Finne, I'm a designer and software developer. Follow me at{" "}
-          <Link
-            target="_blank"
-            href="https://github.com/lukketsvane/"
-            className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
-          >
-            GitHub
-          </Link>
-          <br />
-          or contact me on{" "}
+          Hi, my name is Iver Finne, I'm a designer and software developer. Contact me at{" "}
           <Link
             target="_blank"
             href="https://www.linkedin.com/in/iverfinne"
@@ -71,6 +62,15 @@ export default function Home() {
           >
             LinkedIn
           </Link>{" "}
+          <br />
+          or find me on{" "}
+          <Link
+            target="_blank"
+            href="https://github.com/lukketsvane/"
+            className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
+          >
+            GitHub
+          </Link>
           at night.
         </h2>
       </div>

@@ -1,6 +1,5 @@
-
 "use client";
-import React, { useState, useEffect, KeyboardEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { allGalleryImages } from 'contentlayer/generated';
 import { GalleryArticle } from './article';
 import Image from 'next/image';
@@ -8,7 +7,7 @@ import Image from 'next/image';
 const GalleryPage = () => {
   const [focusImage, setFocusImage] = useState<number | null>(null);
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = (event: globalThis.KeyboardEvent) => {
     if (focusImage === null) return;
 
     if (event.key === 'ArrowRight' && focusImage < allGalleryImages.length - 1) {
@@ -23,9 +22,9 @@ const GalleryPage = () => {
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown as EventListener);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown as EventListener);
     };
   }, [focusImage]);
 
