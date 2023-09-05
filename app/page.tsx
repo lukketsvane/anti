@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Particles from "./components/particles";
 import { Moon, Sun, Grid } from "lucide-react";
-import Constellation from './components/Constellation';
+import Constellation from "./components/constellation";
 
 
 const navigation = [
