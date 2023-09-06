@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div className={`flex flex-col items-center justify-center w-screen h-screen overflow-hidden ${darkMode ? "bg-gradient-to-tl from-black via-zinc-600/20 to-black" : "bg-white"}`}>
-      <nav className="my-16 animate-fade-in">
+      <nav className="my-10 animate-fade-in">
         <ul className="flex items-center justify-center gap-4">
           <button onClick={toggleDarkMode}>
             {darkMode ? <Sun className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} /> : <Moon className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} />}

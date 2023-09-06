@@ -15,7 +15,7 @@ const Cappa = () => {
           </div>
         </div>
       </Link>
-      <div className="flex flex-col items-center justify-center w-screen h-screen p-10"> {/* Added padding */}
+      <div className="flex flex-col items-center justify-center w-screen h-screen ml-10"> {/* Added padding */}
         <Shapes /> {/* Use the Shapes component */}
       </div>
     </div>
