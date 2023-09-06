@@ -9,13 +9,15 @@ const Cappa = () => {
   return (
     <div className={`flex flex-col items-center justify-center w-screen h-screen overflow-hidden`}>
       <Link href="/">
-      <div className={`flex flex-col items-center justify-center w-screen h-screen overflow-hidden`}>
-        <div style={{ position: 'fixed', top: '20px', left: '20px', zIndex: 50, cursor: 'pointer' }}>
-        </div>
-          <ArrowLeft size={24} color="black" />
+        <div className={`flex flex-col items-center justify-center w-screen h-screen overflow-hidden`}>
+          <div style={{ position: 'fixed', top: '20px', left: '20px', zIndex: 50, cursor: 'pointer' }}>
+            <ArrowLeft size={24} color="black" />
+          </div>
         </div>
       </Link>
-      <Shapes /> {/* Use the Shapes component */}
+      <div className="flex flex-col items-center justify-center w-screen h-screen p-10"> {/* Added padding */}
+        <Shapes /> {/* Use the Shapes component */}
+      </div>
     </div>
   );
 };

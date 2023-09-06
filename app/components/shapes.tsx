@@ -1,5 +1,3 @@
-// File: ./app/components/shapes.tsx
-
 "use client";
 import React, { useEffect } from "react";
 
@@ -7,10 +5,10 @@ const Shapes = () => {
   useEffect(() => {
     const wrapper = document.getElementById("wrapper");
 
-    const rand = (min, max) =>
+    const rand = (min: number, max: number) =>
       Math.floor(Math.random() * (max - min + 1) + min);
 
-    const uniqueRand = (min, max, prev) => {
+    const uniqueRand = (min: number, max: number, prev: number) => {
       let next = prev;
 
       while (prev === next) next = rand(min, max);
@@ -33,8 +31,8 @@ const Shapes = () => {
       const index = uniqueRand(0, combinations.length - 1, prev),
         combination = combinations[index];
 
-      wrapper.dataset.configuration = combination.configuration;
-      wrapper.dataset.roundness = combination.roundness;
+      wrapper.dataset.configuration = combination.configuration.toString();
+      wrapper.dataset.roundness = combination.roundness.toString();
 
       prev = index;
     }, 3000);
@@ -44,6 +42,7 @@ const Shapes = () => {
 
   return (
     <div id="wrapper" data-configuration="1" data-roundness="1">
+
       <div className="shape"></div>
       <div className="shape"></div>
       <div className="shape"></div>
