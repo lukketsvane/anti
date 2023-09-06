@@ -5,39 +5,41 @@ const Shapes = () => {
   useEffect(() => {
     const wrapper = document.getElementById("wrapper");
 
-    const rand = (min: number, max: number) =>
-      Math.floor(Math.random() * (max - min + 1) + min);
+    if (wrapper) {
+      const rand = (min: number, max: number) =>
+        Math.floor(Math.random() * (max - min + 1) + min);
 
-    const uniqueRand = (min: number, max: number, prev: number) => {
-      let next = prev;
+      const uniqueRand = (min: number, max: number, prev: number) => {
+        let next = prev;
 
-      while (prev === next) next = rand(min, max);
+        while (prev === next) next = rand(min, max);
 
-      return next;
-    };
+        return next;
+      };
 
-    const combinations = [
-      { configuration: 1, roundness: 1 },
-      { configuration: 1, roundness: 2 },
-      { configuration: 1, roundness: 4 },
-      { configuration: 2, roundness: 2 },
-      { configuration: 2, roundness: 3 },
-      { configuration: 3, roundness: 3 },
-    ];
+      const combinations = [
+        { configuration: 1, roundness: 1 },
+        { configuration: 1, roundness: 2 },
+        { configuration: 1, roundness: 4 },
+        { configuration: 2, roundness: 2 },
+        { configuration: 2, roundness: 3 },
+        { configuration: 3, roundness: 3 },
+      ];
 
-    let prev = 0;
+      let prev = 0;
 
-    const intervalId = setInterval(() => {
-      const index = uniqueRand(0, combinations.length - 1, prev),
-        combination = combinations[index];
+      const intervalId = setInterval(() => {
+        const index = uniqueRand(0, combinations.length - 1, prev),
+          combination = combinations[index];
 
-      wrapper.dataset.configuration = combination.configuration.toString();
-      wrapper.dataset.roundness = combination.roundness.toString();
+        wrapper.dataset.configuration = combination.configuration.toString();
+        wrapper.dataset.roundness = combination.roundness.toString();
 
-      prev = index;
-    }, 3000);
+        prev = index;
+      }, 3000);
 
-    return () => clearInterval(intervalId);
+      return () => clearInterval(intervalId);
+    }
   }, []);
 
   return (
