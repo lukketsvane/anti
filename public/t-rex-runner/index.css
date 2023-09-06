@@ -24,8 +24,10 @@ html, body {
   display: none;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
 
-/* Offline page */
 
 .offline .interstitial-wrapper {
   color: #2b2b2b;

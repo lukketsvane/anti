@@ -9,6 +9,7 @@
   }
 } 
 
+
 /* Add these classes for animation */
 /* Add these classes for animation */
 .animate-fade-in-up {
@@ -25,3 +26,5 @@
     transform: translateY(0);
   }
 }
+
+
