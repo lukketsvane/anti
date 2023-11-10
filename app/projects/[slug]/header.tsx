@@ -1,4 +1,3 @@
-"use client";
 // header.tsx
 import { ArrowLeft, Eye, Github } from "lucide-react";
 import Link from "next/link";
