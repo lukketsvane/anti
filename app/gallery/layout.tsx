@@ -3,13 +3,15 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Moon, Sun, Grid, ArrowLeft } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
 
 const navigation = [
-  { icon: <Grid size={20} />, href: '/gallery', name: '' },
+  { name: 'GitHub', href: '/github' },
+  { name: 'Instagram', href: '/instagram' },
   { name: 'Projects', href: '/projects' },
   { name: 'Contact', href: '/contact' },
+  { name: 'Home', href: '/' },
 ];
 
 type Props = {
@@ -32,31 +34,37 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
   };
 
   return (
-    <div className={`relative min-h-screen ${darkMode ? 'bg-gradient-to-tl from-black via-zinc-600/20 to-black' : 'bg-white'}`}>
-      <header>
-        <div className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 border-b ${darkMode ? 'bg-zinc-900/0 border-transparent' : 'bg-zinc-900/500 border-zinc-800'}`}>
-          <div className="container flex items-center justify-between p-6 mx-auto">
-            <Link href="/">
-              <ArrowLeft className={`w-6 h-6 ${darkMode ? 'text-white' : 'text-black'}`} />
-            </Link>
-            <div className={`flex justify-end gap-8 ${darkMode ? 'text-white' : 'text-black'}`}>
-              <button onClick={toggleDarkMode}>
-                {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-              </button>
-              {navigation.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  <div className={`duration-200 hover:text-zinc-100 ${darkMode ? 'text-white' : 'text-black'}`}>
-                    {item.icon || item.name}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+    <div className="flex">
+      {/* Sidebar */}
+      <div className={`sticky top-0 h-screen flex flex-col justify-between ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} p-4 w-1/4 max-w-xs`}>
+        {/* Top section with dark mode toggle */}
+        <div>
+          <button onClick={toggleDarkMode} className="mb-4">
+            {darkMode ? <Sun size={20} className="text-white" /> : <Moon size={20} className="text-black" />}
+          </button>
+          <p className="font-bold">Aperture</p>
+          <p className="text-sm">A minimal template for your art or photography. Includes a grid layout, overlays, and effects. All of the content is easily editable via the CMS. Made by Benjamin.</p>
         </div>
-      </header>
-      <div className={`px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 ${darkMode ? 'text-white' : 'text-black'}`}>
-        {children}
+
+        {/* Bottom navigation */}
+        <nav className={`${darkMode ? 'border-gray-200' : 'border-gray-700'}`}>
+          {navigation.map((item, index) => (
+            <div key={index} className="py-1">
+              {index !== 0 && <hr className={`${darkMode ? 'border-gray-200' : 'border-gray-700'}`} />}
+              <Link href={item.href}>
+                <div className="hover:underline">{item.name}</div>
+              </Link>
+            </div>
+          ))}
+        </nav>
       </div>
+
+      {/* Main content */}
+      <main className={`flex-grow p-4 overflow-auto ${darkMode ? 'bg-black' : 'bg-white'}`}>
+        <div className="gallery grid grid-cols-3 gap-4">
+          {children}
+        </div>
+      </main>
     </div>
   );
 };

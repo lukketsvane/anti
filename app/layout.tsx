@@ -5,73 +5,71 @@ import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
-	title: {
-		default: "iverfinne.no",
-		template: "%s | iverfinne.no",
-	},
-	description: "Software engineer at upstash.com and founder of planetfall.io",
-	openGraph: {
-		title: "iverfinne.no",
-		description:
-			"Software engineer at upstash.com and founder of planetfall.io",
-		url: "https://iverfinne.no",
-		siteName: "iverfinne.no",
-		images: [
-			{
-				url: "https://iverfinne.no/og.png",
-				width: 1920,
-				height: 1080,
-			},
-		],
-		locale: "en-US",
-		type: "website",
-	},
-	robots: {
-		index: true,
-		follow: true,
-		googleBot: {
-			index: true,
-			follow: true,
-			"max-video-preview": -1,
-			"max-image-preview": "large",
-			"max-snippet": -1,
-		},
-	},
-	twitter: {
-		title: "anti.space",
-		card: "summary_large_image",
-	},
-	icons: {
-		shortcut: "/favicon.png",
-	},
+  title: {
+    default: "iverfinne.no",
+    template: "%s | iverfinne.no",
+  },
+  description: "Software engineer at upstash.com and founder of planetfall.io",
+  openGraph: {
+    title: "iverfinne.no",
+    description: "Software engineer at upstash.com and founder of planetfall.io",
+    url: "https://iverfinne.no",
+    siteName: "iverfinne.no",
+    images: [
+      {
+        url: "https://iverfinne.no/og.png",
+        width: 1920,
+        height: 1080,
+      },
+    ],
+    locale: "en-US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    title: "anti.space",
+    card: "summary_large_image",
+  },
+  icons: {
+    shortcut: "/favicon.png",
+  },
 };
+
 const inter = Inter({
-	subsets: ["latin"],
-	variable: "--font-inter",
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 const calSans = LocalFont({
-	src: "../public/fonts/CalSans-SemiBold.ttf",
-	variable: "--font-calsans",
+  src: "../public/fonts/CalSans-SemiBold.ttf",
+  variable: "--font-calsans",
 });
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
-			<head>
-				<Analytics />
-			</head>
-			<body
-				className={`bg-black ${
-					process.env.NODE_ENV === "development" ? "debug-screens" : undefined
-				}`}
-			>
-				{children}
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+      <head>
+        <Analytics />
+      </head>
+      <body className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined}`}>
+        <div className="main-content">
+          {children}
+        </div>
+      </body>
+    </html>
+  );
 }

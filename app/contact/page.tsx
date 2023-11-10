@@ -2,7 +2,7 @@
 
 "use client";
 import React, { useEffect, useState } from "react";
-import { Github, Mail, Twitter, Sun, Moon, Grid } from "lucide-react";
+import { Github, Mail, Sun, Moon, Grid } from "lucide-react";
 
 import Link from "next/link";
 
@@ -13,12 +13,6 @@ const navigation = [
 ];
 
 const socials = [
-  {
-    icon: <Twitter size={20} />,
-    href: "https://twitter.com/anti.space_",
-    label: "Twitter",
-    handle: "@anti.space_",
-  },
   {
     icon: <Mail size={20} />,
     href: "mailto:dev@iverfinne.no",

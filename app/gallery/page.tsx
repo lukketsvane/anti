@@ -1,3 +1,5 @@
+// ./app/gallery/page.tsx
+
 "use client";
 import React, { useState, useEffect } from 'react';
 import { allGalleryImages } from 'contentlayer/generated';
@@ -29,9 +31,9 @@ const GalleryPage = () => {
   }, [focusImage]);
 
   return (
-    <div className="flex flex-wrap items-center justify-center">
+    <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {allGalleryImages?.map((imageData, index) => (
-        <div key={imageData._id} className="w-full p-2 sm:w-1/2 md:w-1/4 lg:w-1/4">
+        <div key={imageData._id} className="rounded-lg overflow-hidden shadow-lg">
           <GalleryArticle 
             title={imageData.title} 
             image={imageData.image} 
@@ -43,8 +45,10 @@ const GalleryPage = () => {
       )) ?? 'No images found.'}
 
       {focusImage !== null && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-10 bg-black bg-opacity-70" onClick={() => setFocusImage(null)}>
-          <Image src={allGalleryImages[focusImage].image} alt={allGalleryImages[focusImage].title} objectFit="contain" layout="fill" className="w-full h-full" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-10 bg-black bg-opacity-50" onClick={() => setFocusImage(null)}>
+          <div className="relative max-w-full max-h-full w-2/3 h-2/3">
+            <Image src={allGalleryImages[focusImage].image} alt={allGalleryImages[focusImage].title} objectFit="contain" layout="fill" />
+          </div>
         </div>
       )}
     </div>
