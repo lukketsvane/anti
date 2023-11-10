@@ -61,7 +61,7 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
 
       {/* Main content */}
       <main className={`flex-grow p-4 overflow-auto ${darkMode ? 'bg-black' : 'bg-white'}`}>
-        <div className="gallery grid grid-cols-3 gap-4">
+        <div>
           {children}
         </div>
       </main>
