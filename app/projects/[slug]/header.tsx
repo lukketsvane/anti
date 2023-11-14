@@ -50,7 +50,7 @@ export const Header: React.FC<Props> = ({ project, views }) => {
       <div className="container mx-auto relative isolate overflow-hidden sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
+            <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl font-display">
               {project.title}
             </h1>
             <p className="mt-6 text-lg leading-8 text-zinc-300">
@@ -59,7 +59,7 @@ export const Header: React.FC<Props> = ({ project, views }) => {
           </div>
 
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+            <div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-black sm:grid-cols-2 md:flex lg:gap-x-10">
               {
                 links.map((link) => (
                   <Link key={link.label} href={link.href} passHref>
