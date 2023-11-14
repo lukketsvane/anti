@@ -15,6 +15,13 @@ body {
 .main-content {
   max-height: 100vh; /* Maximum height of viewport */
   overflow-y: auto; /* Allow scrolling within the container */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+/* For Chrome, Safari, and Opera */
+.main-content::-webkit-scrollbar {
+  display: none;
 }
 
 @layer base {
@@ -50,6 +57,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
+
 .no-border {
   border: none;
 }
