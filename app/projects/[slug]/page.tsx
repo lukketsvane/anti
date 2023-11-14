@@ -9,11 +9,10 @@ import { Redis } from "@upstash/redis";
 export const revalidate = 60;
 
 type Props = {
-	params: {
-		slug: string;
-	};
+    project: Project;
+    views?: number; // Made optional with '?'
+    darkMode?: boolean; // Made optional with '?'
 };
-
 const redis = Redis.fromEnv();
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
