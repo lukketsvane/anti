@@ -1,5 +1,3 @@
-// ./app/gallery/article.tsx
-
 "use client";
 import React from 'react';
 import Image from 'next/image';
@@ -14,12 +12,11 @@ type GalleryArticleProps = {
 
 export const GalleryArticle: React.FC<GalleryArticleProps> = ({ title, image, content, index, setFocusImage }) => {
   return (
-    <article className="flex flex-col items-center w-full p-2 animate-fade-in-up" onClick={() => setFocusImage(index)}>
-      <div className="relative w-full pb-full hover:opacity-80 cursor-pointer">
-        <div style={{ paddingTop: '100%' }}></div>
-        <Image src={image} alt={title} objectFit="cover" layout="fill" className="absolute inset-0" />
+    <article className="flex flex-col items-center w-full animate-fade-in-up" onClick={() => setFocusImage(index)}>
+      <div className="gallery-item relative w-full overflow-hidden rounded-lg" style={{ paddingBottom: '113.33%' }}> {/* Aspect ratio 3:4 */}
+        <Image src={image} alt={title} objectFit="cover" layout="fill" className="absolute inset-0 transition-transform duration-300 hover:scale-105" />
       </div>
-      <div className="prose prose-lg">{content}</div>
+      <div className="prose">{content}</div>
     </article>
   );
 };

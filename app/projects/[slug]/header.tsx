@@ -12,9 +12,10 @@ type Props = {
     repository?: string;
   };
   views: number;
+  darkMode: boolean;
 };
 
-export const Header: React.FC<Props> = ({ project, views }) => {
+export const Header: React.FC<Props> = ({ project, views, darkMode }) => {
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
 
@@ -45,25 +46,25 @@ export const Header: React.FC<Props> = ({ project, views }) => {
   return (
     <header
       ref={ref}
-      className="relative isolate overflow-hidden bg-gradient-to-tl from-black via-zinc-900 to-black"
+      className={`relative isolate overflow-hidden`}
     >
-      <div className="container mx-auto relative isolate overflow-hidden sm:py-32">
+      <div className="container pt-16  mx-auto relative isolate overflow-hidden sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
+            <h1 className={`text-4xl font-bold tracking-tight sm:text-6xl font-display }`}>
               {project.title}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-zinc-300">
+            <p className={`mt-6 text-lg leading-8 `}>
               {project.description}
             </p>
           </div>
 
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+            <div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 sm:grid-cols-2 md:flex lg:gap-x-10">
               {
                 links.map((link) => (
                   <Link key={link.label} href={link.href} passHref>
-                    <a target="_blank" className="hover:underline">
+                    <a target="_blank" className={`hover:underline ${darkMode ? 'text-white' : 'text-black'}`}>
                       {link.label} <span aria-hidden="true">&rarr;</span>
                     </a>
                   </Link>

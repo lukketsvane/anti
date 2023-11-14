@@ -1,5 +1,3 @@
-// File: ./app/nav.tsx
-
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -25,36 +23,37 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
     return () => observer.disconnect();
   }, []);
 
+  const handleBackClick = () => {
+    window.history.back();
+  };
+
   return (
     <header ref={ref}>
       <div
-        className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 border-b ${
+        className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 ${
           isIntersecting
-            ? "bg-zinc-900/0 border-transparent"
-            : "bg-zinc-900/500 border-zinc-800"
+            ? darkMode ? "border-b border-white" : "border-b border-transparent"
+            : darkMode ? "bg-zinc-900/500 border-b border-white" : "bg-zinc-900/500 border-b border-zinc-800"
         }`}
       >
         <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
-          <div className={`flex justify-between gap-8 ${isIntersecting ? "text-white" : "text-black"}`}>
-          <button onClick={toggleDarkMode} className={`duration-200 ${isIntersecting ? "text-white" : "text-black"} focus:outline-none`}>
-            {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-          </button>
-            <Link href="/projects" className={`duration-200 hover:text-zinc-100 ${isIntersecting ? "text-white" : "text-black"}`}>
+          <div className={`flex justify-between gap-8 ${darkMode ? "text-white" : "text-black"}`}>
+            <button onClick={toggleDarkMode} className={`duration-200 ${darkMode ? "text-white" : "text-black"} focus:outline-none`}>
+              {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+            </button>
+            <Link href="/projects" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
               Projects
             </Link>
-            <Link href="/contact" className={`duration-200 hover:text-zinc-100 ${isIntersecting ? "text-white" : "text-black"}`}>
+            <Link href="/contact" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
               Contact
             </Link>
-            <Link href="/gallery" className={`duration-200 hover:text-zinc-100 ${isIntersecting ? "text-white" : "text-black"}`}>
+            <Link href="/gallery" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
               Gallery
             </Link>
           </div>
-
-
-
-          <Link href="/" className={`duration-200 ${isIntersecting ? "text-white" : "text-black"} hover:text-zinc-100`}>
+          <button onClick={handleBackClick} className={`duration-200 ${darkMode ? "text-white" : "text-black"} hover:text-zinc-100`}>
             <ArrowLeft className="w-6 h-6" />
-          </Link>
+          </button>
         </div>
       </div>
     </header>

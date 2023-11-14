@@ -1,20 +1,28 @@
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
+  gap: 6px;
 }
 
+/* Responsive grid columns */
 @media (max-width: 768px) {
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 
-
+/* Gallery image styles */
 .gallery img {
-  border: none; /* Remove borders from images */
+  transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+  border-radius: 10px; /* Rounded corners for images */
 }
 
+/* Hover effect - zooms in the image */
+.gallery img:hover {
+  transform: scale(1.05); /* Slight zoom */
+}
+
+/* Dark and light mode styles */
 .dark-mode {
   --text-color: white;
   --line-color: white;
@@ -27,7 +35,7 @@
   --bg-color: white;
 }
 
-/* Use CSS variables in your classes */
+/* Use CSS variables */
 .text-color {
   color: var(--text-color);
 }
@@ -38,4 +46,12 @@
 
 .bg-color {
   background-color: var(--bg-color);
+}
+
+/* Aspect ratio styling */
+.gallery-article-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 125%; /* Taller aspect ratio */
+  overflow: hidden; /* Hide overflow */
 }

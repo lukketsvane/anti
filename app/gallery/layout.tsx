@@ -1,5 +1,3 @@
-// ./app/gallery/layout.tsx
-
 "use client";
 
 import React, { useEffect, useState } from 'react';
@@ -8,7 +6,6 @@ import Link from 'next/link';
 
 const navigation = [
   { name: 'GitHub', href: '/github' },
-  { name: 'Instagram', href: '/instagram' },
   { name: 'Projects', href: '/projects' },
   { name: 'Contact', href: '/contact' },
   { name: 'Home', href: '/' },
@@ -32,18 +29,24 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
     localStorage.setItem('dark-mode', (!darkMode).toString());
     setDarkMode(!darkMode);
   };
-
   return (
     <div className="flex">
       {/* Sidebar */}
       <div className={`sticky top-0 h-screen flex flex-col justify-between ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} p-4 w-1/4 max-w-xs`}>
-        {/* Top section with dark mode toggle */}
+        {/* Top section with dark mode toggle and back button */}
         <div>
-          <button onClick={toggleDarkMode} className="mb-4">
-            {darkMode ? <Sun size={20} className="text-white" /> : <Moon size={20} className="text-black" />}
-          </button>
-          <p className="font-bold">Aperture</p>
-          <p className="text-sm">A minimal template for your art or photography. Includes a grid layout, overlays, and effects. All of the content is easily editable via the CMS. Made by Benjamin.</p>
+          <div className="flex items-center mb-4">
+            <Link href="/">
+              <svg xmlns="http://www.w3.org/2000/svg" className={`w-6 h-6 mr-4 ${darkMode ? 'text-white' : 'text-black'}`} fill="none" viewBox="0 0 24 24" stroke={darkMode ? 'white' : 'black'}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </Link>
+            <button onClick={toggleDarkMode}>
+              {darkMode ? <Sun size={20} className="text-white" /> : <Moon size={20} className="text-black" />}
+            </button>
+          </div>
+          <p className="font-bold">Synthography</p>
+          <p className="text-sm">Explore the vibrant world of Synthography, showcasing 40 unique digital creations. Each piece blends abstract forms with rich colors, designed for contemporary tastes. Enjoy this visually engaging collection, effortlessly presented for your viewing pleasure.</p>
         </div>
 
         {/* Bottom navigation */}

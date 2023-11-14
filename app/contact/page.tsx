@@ -1,16 +1,9 @@
-// File: ./app/contact/page.tsx
-
 "use client";
 import React, { useEffect, useState } from "react";
-import { Github, Mail, Sun, Moon, Grid } from "lucide-react";
-
+import { Github, Mail, Linkedin } from "lucide-react";
 import Link from "next/link";
-
-const navigation = [
-  { icon: <Grid size={20} />, href: '/gallery' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Contact', href: '/contact' },
-];
+import { Card } from '../components/card'; 
+import { Navigation } from '../components/nav'; // Import the Navigation component
 
 const socials = [
   {
@@ -21,9 +14,15 @@ const socials = [
   },
   {
     icon: <Github size={20} />,
-    href: "https://github.com/anti.space",
+    href: "https://github.com/lukketsvane",
     label: "Github",
-    handle: "anti.space",
+    handle: "lukketsvane",
+  },
+  {
+    icon: <Linkedin size={20} />,
+    href: "https://www.linkedin.com/in/iverfinne/",
+    label: "LinkedIn",
+    handle: "iverfinne",
   },
 ];
 
@@ -43,56 +42,42 @@ export default function ContactPage() {
   };
 
   return (
-    <div className={`relative min-h-screen ${darkMode ? 'bg-gradient-to-tl from-black via-zinc-600/20 to-black' : 'bg-white'}`}>
-      <header>
-        <div className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 border-b ${darkMode ? 'bg-zinc-900/0 border-transparent' : 'bg-zinc-900/500 border-zinc-800'}`}>
-          <div className="container flex items-center justify-between p-6 mx-auto">
-            <Link href="/">
-              <svg xmlns="http://www.w3.org/2000/svg" className={`w-6 h-6 ${darkMode ? 'text-white' : 'text-black'}`} fill="none" viewBox="0 0 24 24" stroke={darkMode ? 'white' : 'black'}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </Link>
-            <div className={`flex justify-end gap-8 ${darkMode ? 'text-white' : 'text-black'}`}>
-              <button onClick={toggleDarkMode}>
-                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-              {navigation.map((item, index) => (
-                <Link key={index} href={item.href}>
-                  {item.name || item.icon}
-                </Link>
-              ))}
-            </div>
-          </div>
+    <div className={`relative pt-16 min-h-screen ${darkMode ? 'bg-black' : 'bg-white'}`}>
+      <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
+      <main className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+        <div className="max-w-2xl mx-auto lg:mx-0">
+          <h1 className={`text-3xl font-bold tracking-tight sm:text-4xl ${darkMode ? 'text-white' : 'text-black'}`}>
+            Contact
+          </h1>
+          <p className={`mt-4 ${darkMode ? 'text-gray-300' : 'text-zinc-400'}`}>
+            Feel free to reach out to me through these platforms.
+          </p>
         </div>
-      </header>
-      <div className="container px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
-        <h2 className={`mb-4 text-3xl font-bold tracking-tight sm:text-4xl ${darkMode ? 'text-white' : 'text-black'}`}>
-          Contact
-        </h2>
-        <p className="mt-4 text-zinc-400">
-          Feel free to reach out to me through these platforms.
-        </p>
-        <div className="w-full h-px bg-zinc-800" />
-        <div className="grid grid-cols-1 gap-10 mx-auto mt-8 sm:grid-cols-3 lg:grid-cols-3">
-          {socials.map((s) => (
-            <div key={s.href} className="p-14 relative flex flex-col items-center duration-700 group md:gap-8 md:py-24 lg:pb-48 md:p-16">
-              <Link href={s.href} target="_blank">
-                <div className={`relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200 drop-shadow-orange`}>
-                  {s.icon}
-                </div>
+        <div className={`w-full h-px ${darkMode ? 'bg-gray-300' : 'bg-zinc-800'}`} />
+
+        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
+          {socials.map((s, index) => (
+            <Card key={index}>
+              <Link href={s.href} passHref>
+                <article className="p-4 md:p-8 group cursor-pointer">
+                  <div className={`flex items-center justify-center w-12 h-12 text-sm border rounded-full group-hover:text-white group-hover:bg-zinc-900 ${darkMode ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-200 text-gray-600'}`}>
+                    {s.icon}
+                  </div>
+                  <div className="mt-4 text-center">
+                    <h2 className={`text-xl font-medium lg:text-3xl ${darkMode ? 'text-white' : 'text-black'} font-display`}>
+                      {s.handle}
+                    </h2>
+                    <p className={`mt-2 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {s.label}
+                    </p>
+                  </div>
+                </article>
               </Link>
-              <div className="z-10 flex flex-col items-center">
-                <span className={`text-xl font-medium duration-150 lg:text-3xl ${darkMode ? 'text-zinc-200 group-hover:text-white' : 'text-black group-hover:text-zinc-200'} font-display`}>
-                  {s.handle}
-                </span>
-                <span className={`mt-4 text-sm text-center duration-1000 ${darkMode ? 'text-zinc-400 group-hover:text-zinc-200' : 'text-black group-hover:text-zinc-200'}`}>
-                  {s.label}
-                </span>
-              </div>
-            </div>
+            </Card>
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 }

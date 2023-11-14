@@ -1,12 +1,20 @@
+// next.config.mjs
 import { withContentlayer } from "next-contentlayer";
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
-	experimental: {
-		appDir: true,
-		mdxRs: true,
-	},
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  experimental: {
+    appDir: true,
+    mdxRs: true,
+  },
+  images: {
+    // Add your image domains if needed
+    domains: ['example.com'],
+  },
+  generateMetadata: (pages) => ({
+    metadataBase: 'https://www.yourwebsite.com',
+    // Other metadata configurations if needed
+  }),
 };
 
 export default withContentlayer(nextConfig);

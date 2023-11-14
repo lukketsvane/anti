@@ -13,11 +13,20 @@ const navigation = [
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
+  const [animateTitle, setAnimateTitle] = useState(false); // State to control title animation
+  const [animatePageElements, setAnimatePageElements] = useState(false); // State to control other page elements animation
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedMode = localStorage.getItem('dark-mode');
       setDarkMode(savedMode === 'true');
+
+      // Check if the session already has animations played
+      if (!sessionStorage.getItem('page-visited')) {
+        setAnimateTitle(true);
+        setAnimatePageElements(true);
+        sessionStorage.setItem('page-visited', 'true');
+      }
     }
   }, []);
 
@@ -28,7 +37,7 @@ export default function Home() {
 
   return (
     <div className={`flex flex-col items-center justify-center w-screen h-screen overflow-hidden ${darkMode ? "bg-gradient-to-tl from-black via-zinc-600/20 to-black" : "bg-white"}`}>
-      <nav className="my-10 animate-fade-in">
+      <nav className={`my-10 ${animatePageElements ? 'animate-fade-in' : ''}`}>
         <ul className="flex items-center justify-center gap-4">
           <button onClick={toggleDarkMode}>
             {darkMode ? <Sun className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} /> : <Moon className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} />}
@@ -43,16 +52,18 @@ export default function Home() {
         </ul>
       </nav>
 
+
       <div className={`hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
       <Particles
-        className={`absolute inset-0 -z-10 animate-fade-in ${darkMode ? "text-white" : "text-black"}`} // No "fixed" class
+        className={`absolute inset-0 -z-10 animate-fade-in ${darkMode ? "text-white" : "text-black"}`}
         quantity={100}
       />
-      <h1 className={`z-10 text-4xl text-transparent duration-1000 cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ${darkMode ? "bg-white" : "bg-black"}`}>
+      <h1 className={`z-10 text-4xl text-transparent duration-1000 cursor-default text-edge-outline font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ${darkMode ? "bg-white" : "bg-black"} ${animateTitle ? 'animate-title' : ''}`}>
         Hello, World!
       </h1>
       <div className={`hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
-      <div className="my-16 text-center animate-fade-in">
+
+      <div className={`my-16 text-center ${animatePageElements ? 'animate-fade-in' : ''}`}>
         <h2 className={`text-sm ${darkMode ? "text-white" : "text-black"}`}>
           Hi, my name is Iver Finne, I'm a designer and software developer. Contact me at{" "}
           <Link

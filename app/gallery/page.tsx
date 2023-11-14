@@ -1,5 +1,3 @@
-// ./app/gallery/page.tsx
-
 "use client";
 import React, { useState, useEffect } from 'react';
 import { allGalleryImages } from 'contentlayer/generated';
@@ -8,6 +6,14 @@ import Image from 'next/image';
 
 const GalleryPage = () => {
   const [focusImage, setFocusImage] = useState<number | null>(null);
+
+  // Navigation array with updated GitHub link
+  const navigation = [
+    { name: 'GitHub', href: 'https://github.com/lukketsvane' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '/' },
+  ];
 
   const handleKeyDown = (event: globalThis.KeyboardEvent) => {
     if (focusImage === null) return;
@@ -33,7 +39,7 @@ const GalleryPage = () => {
   return (
     <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {allGalleryImages?.map((imageData, index) => (
-        <div key={imageData._id} className="rounded-lg overflow-hidden shadow-lg">
+        <div key={imageData._id} className="gallery-item rounded-lg overflow-hidden shadow-lg">
           <GalleryArticle 
             title={imageData.title} 
             image={imageData.image} 
