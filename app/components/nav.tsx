@@ -28,14 +28,13 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
   };
 
   return (
-    <header ref={ref}>
+    <header>
       <div
         className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 ${
-          isIntersecting
-            ? darkMode ? "border-b border-white" : "border-b border-transparent"
-            : darkMode ? "bg-zinc-900/500 border-b border-white" : "bg-zinc-900/500 border-b border-zinc-800"
+          darkMode ? "bg-zinc-900/75 border-b border-white text-white" : "bg-white/75 border-b border-zinc-800 text-black"
         }`}
       >
+
         <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
           <div className={`flex justify-between gap-8 ${darkMode ? "text-white" : "text-black"}`}>
             <button onClick={toggleDarkMode} className={`duration-200 ${darkMode ? "text-white" : "text-black"} focus:outline-none`}>
