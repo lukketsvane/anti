@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Moon, Sun } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Grid } from "lucide-react";
 import Link from "next/link";
 import i18n from 'i18n.config';
 import { useTranslation } from 'react-i18next';
@@ -40,17 +40,17 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
             <button onClick={toggleDarkMode} className={`duration-200 ${darkMode ? "text-white" : "text-black"} focus:outline-none`}>
               {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
             </button>
-            <button onClick={toggleLanguage} className={`duration-200 ${darkMode ? "text-white" : "text-black"} hover:text-zinc-100`}>
-              {languageLabel}
-            </button>
             <Link href="/projects" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
               {t('projects')}
             </Link>
             <Link href="/contact" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
               {t('contact')}
             </Link>
+            <button onClick={toggleLanguage} className={`duration-200 ${darkMode ? "text-white" : "text-black"} hover:text-zinc-100`}>
+              {languageLabel}
+            </button>
             <Link href="/gallery" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
-              {t('gallery')}
+            <Grid size={20} className="mr-2" />
             </Link>
           </div>
           <button onClick={handleBackClick} className={`duration-200 ${darkMode ? "text-white" : "text-black"} hover:text-zinc-100`}>

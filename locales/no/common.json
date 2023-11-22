@@ -20,5 +20,19 @@
       "label": "LinkedIn",
       "handle": "iverfinne"
     }
-  ]
+  ],
+  "synthographyTitle": "Synthografi",
+  "synthographyDescription": "Utforsk den levende verden av Synthografi, som viser 40 unike digitale kreasjoner. Hvert stykke blander abstrakte former med rike farger, designet for moderne smaker. Nyt denne visuelt engasjerende samlingen, som presenteres uten anstrengelse for din visningsglede.",
+  "navGitHub": "GitHub",
+  "navProjects": "Prosjekter",
+  "navContact": "Kontakt",
+  "navHome": "Hjem",
+  "helloWorld": "Hello, World!",
+  "intro": "Dette er en introduksjon...",
+  "linkedin": "LinkedIn",
+  "github": "GitHub",
+  "atNight": "om natten",
+  "projects": "Prosjekter",
+  "contact": "Kontakt",
+  "gallery": "Galleri"
 }
