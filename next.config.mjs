@@ -1,14 +1,17 @@
-// next.config.mjs
 import { withContentlayer } from "next-contentlayer";
 
 const nextConfig = {
+  i18n: {
+    locales: ['en', 'no'],
+    defaultLocale: 'en',
+    localeDetection: false,
+  },
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   experimental: {
     appDir: true,
     mdxRs: true,
   },
   images: {
-    // Add your image domains if needed
     domains: ['example.com'],
   },
   generateMetadata: (pages) => ({
