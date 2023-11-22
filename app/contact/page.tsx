@@ -1,15 +1,22 @@
-// app/contact/page.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { Github, Mail, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { Card } from '../components/card'; 
-import { Navigation } from '../components/nav'; // Import the Navigation component
+import { Navigation } from '../components/nav';
 import { useTranslation } from 'react-i18next';
+
+// Define a type for your socials objects
+type Social = {
+  icon: string;
+  href: string;
+  label: string;
+  handle: string;
+};
 
 export default function ContactPage() {
   const [darkMode, setDarkMode] = useState(false);
-  const { t } = useTranslation('common'); // Use the translation hook
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -23,6 +30,9 @@ export default function ContactPage() {
     setDarkMode(!darkMode);
   };
 
+  // Get the socials data and type cast it as an array of Social objects
+  const socials: Social[] = t('socials', { returnObjects: true }) as Social[];
+
   return (
     <div className={`relative pt-16 min-h-screen ${darkMode ? 'bg-black' : 'bg-white'}`}>
       <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -30,21 +40,22 @@ export default function ContactPage() {
       <main className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
         <div className="max-w-2xl mx-auto lg:mx-0">
           <h1 className={`text-3xl font-bold tracking-tight sm:text-4xl ${darkMode ? 'text-white' : 'text-black'}`}>
-            {t('contactTitle')} {/* Translated title */}
+            {t('contactTitle')}
           </h1>
           <p className={`mt-4 ${darkMode ? 'text-gray-300' : 'text-zinc-400'}`}>
-            {t('contactDescription')} {/* Translated description */}
+            {t('contactDescription')}
           </p>
         </div>
         <div className={`w-full h-px ${darkMode ? 'bg-gray-300' : 'bg-zinc-800'}`} />
 
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          {t('socials', { returnObjects: true }).map((s, index) => ( // Translated socials array
+          {socials.map((s, index) => (
             <Card key={index}>
               <Link href={s.href} passHref>
                 <article className="p-4 md:p-8 group cursor-pointer">
                   <div className={`flex items-center justify-center w-12 h-12 text-sm border rounded-full group-hover:text-white group-hover:bg-zinc-900 ${darkMode ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-200 text-gray-600'}`}>
-                    {s.icon}
+                    {/* You'll need to convert icon strings to actual components */}
+                    {s.icon === "mail" ? <Mail size={20} /> : s.icon === "github" ? <Github size={20} /> : <Linkedin size={20} />}
                   </div>
                   <div className="mt-4 text-center">
                     <h2 className={`text-xl font-medium lg:text-3xl ${darkMode ? 'text-white' : 'text-black'} font-display`}>
