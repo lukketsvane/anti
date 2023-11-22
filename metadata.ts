@@ -6,3 +6,4 @@ export const metadata: Metadata = {
     template: "%s | iverfinne.no",
   },
   description: "Software engineer at upstash.com and founder of planetfall.io",
+}
