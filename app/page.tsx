@@ -48,9 +48,6 @@ export default function Home() {
                     <button onClick={toggleDarkMode}>
                         {darkMode ? <Sun className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} /> : <Moon className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} />}
                     </button>
-                    <button onClick={toggleLanguage} className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
-                        {languageLabel}
-                    </button>
                     <Link href="/projects">
                         <div className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
                             {t('projects')}
@@ -61,6 +58,9 @@ export default function Home() {
                             {t('contact')}
                         </div>
                     </Link>
+                    <button onClick={toggleLanguage} className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
+                        {languageLabel}
+                    </button>
                     <Link href="/gallery">
                         <div className={`flex items-center text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
                             <Grid size={20} className="mr-2" />
