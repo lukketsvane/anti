@@ -35,9 +35,12 @@ export default async function PostPage({ params }: Props) {
   const views =
     (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
 
+  // Assuming `darkMode` is a boolean, you might need to determine its value appropriately.
+  const darkMode = true; // or however you determine the dark mode state
+
   return (
     <div className="bg-zinc-50 min-h-screen">
-      <Header project={project} views={views} />
+      <Header project={project} views={views} darkMode={darkMode} />
       <ReportView slug={project.slug} />
 
       <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">

@@ -12,7 +12,7 @@ const nextConfig = {
     domains: ['example.com'],
   },
   generateMetadata: (pages) => ({
-    metadataBase: 'https://www.yourwebsite.com',
+    metadataBase: 'https://www.iverfinne.com',
     // Other metadata configurations if needed
   }),
 };
