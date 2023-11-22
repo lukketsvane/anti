@@ -6,5 +6,11 @@ import projects__emberlightMdx from './projects__emberlight.mdx.json' assert { t
 import projects__researcherMdx from './projects__researcher.mdx.json' assert { type: 'json' }
 import projects__storygenMdx from './projects__storygen.mdx.json' assert { type: 'json' }
 import projects__ygdrasylMdx from './projects__ygdrasyl.mdx.json' assert { type: 'json' }
+import projects__no__coralMdx from './projects__no__coral.mdx.json' assert { type: 'json' }
+import projects__no__dongjinMdx from './projects__no__dongjin.mdx.json' assert { type: 'json' }
+import projects__no__emberlightMdx from './projects__no__emberlight.mdx.json' assert { type: 'json' }
+import projects__no__researcherMdx from './projects__no__researcher.mdx.json' assert { type: 'json' }
+import projects__no__storygenMdx from './projects__no__storygen.mdx.json' assert { type: 'json' }
+import projects__no__ygdrasylMdx from './projects__no__ygdrasyl.mdx.json' assert { type: 'json' }
 
-export const allProjects = [projects__coralMdx, projects__dongjinMdx, projects__emberlightMdx, projects__researcherMdx, projects__storygenMdx, projects__ygdrasylMdx]
+export const allProjects = [projects__coralMdx, projects__dongjinMdx, projects__emberlightMdx, projects__researcherMdx, projects__storygenMdx, projects__ygdrasylMdx, projects__no__coralMdx, projects__no__dongjinMdx, projects__no__emberlightMdx, projects__no__researcherMdx, projects__no__storygenMdx, projects__no__ygdrasylMdx]
