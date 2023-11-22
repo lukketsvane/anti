@@ -36,7 +36,7 @@ export default async function PostPage({ params }: Props) {
     (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
 
   // Assuming `darkMode` is a boolean, you might need to determine its value appropriately.
-  const darkMode = true; // or however you determine the dark mode state
+  const darkMode = false; // or however you determine the dark mode state
 
   return (
     <div className="bg-zinc-50 min-h-screen">
