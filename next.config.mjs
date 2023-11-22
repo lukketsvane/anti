@@ -4,7 +4,7 @@ const nextConfig = {
   i18n: {
     locales: ['en', 'no'],
     defaultLocale: 'en',
-    localeDetection: false,
+    localeDetection: true,
   },
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   experimental: {
@@ -13,11 +13,7 @@ const nextConfig = {
   },
   images: {
     domains: ['example.com'],
-  },
-  generateMetadata: (pages) => ({
-    metadataBase: 'https://www.iverfinne.com',
-    // Other metadata configurations if needed
-  }),
+  }
 };
 
 export default withContentlayer(nextConfig);
