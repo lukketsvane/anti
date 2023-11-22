@@ -1,33 +1,15 @@
+// app/contact/page.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { Github, Mail, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { Card } from '../components/card'; 
 import { Navigation } from '../components/nav'; // Import the Navigation component
-
-const socials = [
-  {
-    icon: <Mail size={20} />,
-    href: "mailto:dev@iverfinne.no",
-    label: "Email",
-    handle: "dev@iverfinne.no",
-  },
-  {
-    icon: <Github size={20} />,
-    href: "https://github.com/lukketsvane",
-    label: "Github",
-    handle: "lukketsvane",
-  },
-  {
-    icon: <Linkedin size={20} />,
-    href: "https://www.linkedin.com/in/iverfinne/",
-    label: "LinkedIn",
-    handle: "iverfinne",
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function ContactPage() {
   const [darkMode, setDarkMode] = useState(false);
+  const { t } = useTranslation('common'); // Use the translation hook
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -48,16 +30,16 @@ export default function ContactPage() {
       <main className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
         <div className="max-w-2xl mx-auto lg:mx-0">
           <h1 className={`text-3xl font-bold tracking-tight sm:text-4xl ${darkMode ? 'text-white' : 'text-black'}`}>
-            Contact
+            {t('contactTitle')} {/* Translated title */}
           </h1>
           <p className={`mt-4 ${darkMode ? 'text-gray-300' : 'text-zinc-400'}`}>
-            Feel free to reach out to me through these platforms.
+            {t('contactDescription')} {/* Translated description */}
           </p>
         </div>
         <div className={`w-full h-px ${darkMode ? 'bg-gray-300' : 'bg-zinc-800'}`} />
 
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          {socials.map((s, index) => (
+          {t('socials', { returnObjects: true }).map((s, index) => ( // Translated socials array
             <Card key={index}>
               <Link href={s.href} passHref>
                 <article className="p-4 md:p-8 group cursor-pointer">

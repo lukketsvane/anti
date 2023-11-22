@@ -1,10 +1,24 @@
 {
-  "helloWorld": "Hallo, Verden!",
-  "intro": "Dette er en introduksjon...",
-  "linkedin": "LinkedIn",
-  "github": "GitHub",
-  "atNight": "om natten",
-  "projects": "prosjekter",
-  "contact": "kontakt",
-  "gallery": "galleri"
+  "contactTitle": "Kontakt",
+  "contactDescription": "Ta gjerne kontakt med meg gjennom disse plattformene.",
+  "socials": [
+    {
+      "icon": "mail",
+      "href": "mailto:dev@iverfinne.no",
+      "label": "E-post",
+      "handle": "dev@iverfinne.no"
+    },
+    {
+      "icon": "github",
+      "href": "https://github.com/lukketsvane",
+      "label": "Github",
+      "handle": "lukketsvane"
+    },
+    {
+      "icon": "linkedin",
+      "href": "https://www.linkedin.com/in/iverfinne/",
+      "label": "LinkedIn",
+      "handle": "iverfinne"
+    }
+  ]
 }

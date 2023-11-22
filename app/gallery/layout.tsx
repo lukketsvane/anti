@@ -31,9 +31,7 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
   };
   return (
     <div className="flex">
-      {/* Sidebar */}
       <div className={`sticky top-0 h-screen flex flex-col justify-between ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} p-4 w-1/4 max-w-xs`}>
-        {/* Top section with dark mode toggle and back button */}
         <div>
           <div className="flex items-center mb-4">
             <Link href="/">
@@ -49,7 +47,6 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
           <p className="text-sm">Explore the vibrant world of Synthography, showcasing 40 unique digital creations. Each piece blends abstract forms with rich colors, designed for contemporary tastes. Enjoy this visually engaging collection, effortlessly presented for your viewing pleasure.</p>
         </div>
 
-        {/* Bottom navigation */}
         <nav className={`${darkMode ? 'border-gray-200' : 'border-gray-700'}`}>
           {navigation.map((item, index) => (
             <div key={index} className="py-1">
@@ -62,7 +59,6 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
         </nav>
       </div>
 
-      {/* Main content */}
       <main className={`flex-grow p-4 overflow-auto ${darkMode ? 'bg-black' : 'bg-white'}`}>
         <div>
           {children}
