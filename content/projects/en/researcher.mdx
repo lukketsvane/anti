@@ -1,0 +1,36 @@
+---
+title: GPT Researcher
+description: An autonomous agent designed for comprehensive online research tasks. It produces detailed, factual, and unbiased reports, leveraging the power of AI for accurate information.
+date: "2023-08-26"
+published: true
+---
+
+## Overview
+
+GPT Researcher is designed to conduct extensive online research, capable of producing detailed, factual, and unbiased research reports. Inspired by AutoGPT and the Plan-and-Solve paper, it aims to solve the limitations of speed and determinism in current LLMs.
+
+## Mission
+
+Empower individuals and organizations with accurate, unbiased, and factual information by leveraging the power of AI.
+
+## Why Choose GPT Researcher?
+
+- **Time-Efficient**: Manually forming objective conclusions takes time, sometimes weeks.
+- **Current Information**: Traditional LLMs are often trained on outdated information and carry the risk of hallucinations.
+- **Unbiased**: Solutions like ChatGPT + Web Plugin only consider limited resources, potentially leading to biased conclusions.
+
+## Architecture
+
+The architecture involves "planner" and "execution" agents. The planner generates research questions, and the execution agents gather relevant information, which the planner then filters and compiles into a research report.
+
+### More Specifically
+
+1. **Generate Research Questions**: Form an objective opinion on any given task.
+2. **Trigger Crawler Agents**: For each question, an agent scrapes online resources for task-relevant information.
+3. **Summarize Resources**: Summarize relevant information from scraped resources and keep track of sources.
+4. **Final Report**: Filter and aggregate all summarized sources to create a comprehensive research report.
+
+## Demo
+
+N/A
+
