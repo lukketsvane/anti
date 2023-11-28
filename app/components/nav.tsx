@@ -46,9 +46,7 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
             <Link href="/contact" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
               {t('contact')}
             </Link>
-            <button onClick={toggleLanguage} className={`duration-200 ${darkMode ? "text-white" : "text-black"} hover:text-zinc-100`}>
-              {languageLabel}
-            </button>
+
             <Link href="/gallery" className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
             <Grid size={20} className="mr-2" />
             </Link>
