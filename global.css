@@ -1,36 +1,35 @@
-/* global.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Adjustments for background and main content container */
-html, body {
-  height: 100%; /* Ensure full height */
+html,
+body {
+  height: 100%;
+  font-family: 'Inter', sans-serif; /* Apply Inter font to entire document */
 }
 
 body {
-  background-attachment: fixed; /* Fix the background */
+  background-attachment: fixed;
 }
 
 .main-content {
-  max-height: 100vh; /* Maximum height of viewport */
-  overflow-y: auto; /* Allow scrolling within the container */
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* For Chrome, Safari, and Opera */
 .main-content::-webkit-scrollbar {
   display: none;
 }
 
 @layer base {
   .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   }
-} 
+}
 
-/* Add these classes for animation */
 .animate-fade-in-up {
   animation: fadeInUp 0.3s ease-out forwards;
 }
