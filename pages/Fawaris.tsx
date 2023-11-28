@@ -1,53 +1,58 @@
 import "../global.css";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import cvImage from '../public/cv.png';
+import { Navigation } from '@/app/components/nav'; 
 
 const Fawaris = () => {
+    const [darkMode, setDarkMode] = useState(false);
+
+  
+    const toggleDarkMode = () => {
+      setDarkMode(!darkMode);
+    };
+  
+
+    useEffect(() => {
+        const savedMode = localStorage.getItem('dark-mode');
+        setDarkMode(savedMode === 'true');
+    }, []);
+
     return (
         <>
-            <style jsx>{`
-                .hide-scrollbar {
-                    scrollbar-width: none; /* For Firefox */
-                    -ms-overflow-style: none; /* For Internet Explorer and Edge */
-                }
-                .hide-scrollbar::-webkit-scrollbar {
-                    display: none; /* For Chrome, Safari, and Opera */
-                }
-            `}</style>
+            <Head>
+                <title>Iver Finne - CV</title>
+                <link rel="stylesheet" href="../global.css" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+            </Head>
 
-            <div className="flex flex-col md:flex-row items-start justify-center w-screen min-h-screen bg-gray-100">
-                <Head>
-                    <title>Iver Finne - CV</title>
-                </Head>
+      <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-                <Link href="/">
-                    <motion.div
-                        className="fixed top-4 left-4 z-50 cursor-pointer"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <ArrowLeft size={24} color="black" />
-                    </motion.div>
-                </Link>
+            <div className={`pt-24 flex flex-col md:flex-row items-start justify-center w-screen min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
 
-                <motion.div className="w-full md:w-1/4 lg:w-1/5 p-4" initial={{ x: -100 }} animate={{ x: 0 }} transition={{ duration: 1 }}>
-                    <div className="sticky top-20 bg-white shadow-lg rounded-lg overflow-hidden">
+
+                <motion.div 
+                    className="w-full md:w-2/5 lg:w-1/3 p-4"
+                    initial={{ x: -100 }} 
+                    animate={{ x: 0 }} 
+                    transition={{ duration: 1 }}
+                >
+                    <div className={`sticky top-28 shadow-lg rounded-lg overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
                         <Image src={cvImage} alt="CV" layout="responsive" />
                     </div>
                 </motion.div>
 
-                <motion.div className="w-full md:w-3/4 lg:w-4/5 mt-4 md:mt-0 p-4"
+                <motion.div 
+                    className="w-full md:w-3/5 lg:w-2/3 mt-4 md:mt-0 p-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
                 >
-                    <div className="bg-white shadow-lg rounded-lg p-6 overflow-y-auto max-h-screen hide-scrollbar">
+                    <div className={`overflow-y-auto max-h-screen bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 ${darkMode ? 'text-gray-200' : 'text-gray-900'}`}>
                         <div className="text-lg">
                             <h1 className="text-2xl font-bold mb-4">Iver Finne</h1>
                         <p className="mb-2">Creative Director at Drømmebedriften</p>
@@ -96,7 +101,7 @@ const Fawaris = () => {
                             <p>Yangxin, Shandong, China</p>
                         </div>
                         </div>
-                    </div>
+                        </div>
                 </motion.div>
             </div>
         </>

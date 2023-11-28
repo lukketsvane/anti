@@ -6,22 +6,28 @@
 html,
 body {
   height: 100%;
-  font-family: 'Inter', sans-serif; 
+  font-family: 'Inter', sans-serif;
 }
 
 body {
   background-attachment: fixed;
+  overflow-y: auto; /* Allows scrolling but hides scrollbar */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
 
-.main-content {
-  max-height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+body::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
-.main-content::-webkit-scrollbar {
-  display: none;
+/* Styles for hiding the scrollbar in all elements */
+* {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 @layer base {

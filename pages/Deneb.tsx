@@ -42,15 +42,14 @@ const Deneb = () => {
 
       <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      {/* Position the Snowfall component below interactive elements and above the background only */}
-      <Snowfall className="fixed top-0 left-0 w-full h-full z-0" quantity={200} speed={1} />
+      <Snowfall className="fixed top-0 left-0 w-full h-full z-20 pointer-events-none" quantity={200} speed={1} />
 
       <div className={`flex flex-col items-center pt-16 justify-center w-screen min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 p-8 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 p-8 relative">
           {Array.from({ length: 24 }, (_, i) => i + 1).map((day) => (
             <Card key={day}>
               <motion.div
-                className={`border border-gray-300 dark:border-gray-600 p-10 rounded-xl cursor-pointer flex items-center justify-center text-2xl ${
+                className={`border border-gray-300 dark:border-gray-600 p-8 rounded-xl cursor-pointer flex items-center justify-center text-2xl ${
                   activeDays.includes(day) ? 'bg-red-500' : 'bg-gray-700 dark:bg-gray-600'
                 } hover:ring-4 hover:ring-red-300 transition-all duration-150 ease-in-out`}
                 whileHover={{ y: -5 }}
