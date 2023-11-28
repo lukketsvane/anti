@@ -1,5 +1,4 @@
 import "../global.css";
-
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -11,7 +10,7 @@ import Snowfall from '@/app/components/snowfall';
 const Deneb = () => {
   const [darkMode, setDarkMode] = useState(false);
   const today = new Date();
-  const [activeDays, setActiveDays] = useState<number[]>([]); // Type annotation here for the state
+  const [activeDays, setActiveDays] = useState<number[]>([]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -23,7 +22,7 @@ const Deneb = () => {
   }, []);
 
   useEffect(() => {
-    const days: number[] = []; // Explicitly type the array here
+    const days: number[] = [];
     for (let day = 1; day <= 24; day++) {
       const date = new Date(2023, 11, day);
       if (date <= today) {
@@ -37,16 +36,17 @@ const Deneb = () => {
     <>
       <Head>
         <title>Iver Finne - Portfolio</title>
-        <Snowfall className="fixed top-0 left-0 w-full h-full z-0" quantity={200} speed={1} />
-
         <link rel="stylesheet" href="../global.css" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
-\
+
       <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
+      {/* Position the Snowfall component below interactive elements and above the background only */}
+      <Snowfall className="fixed top-0 left-0 w-full h-full z-0" quantity={200} speed={1} />
+
       <div className={`flex flex-col items-center pt-16 justify-center w-screen min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 p-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 p-8 relative z-10">
           {Array.from({ length: 24 }, (_, i) => i + 1).map((day) => (
             <Card key={day}>
               <motion.div
@@ -56,7 +56,7 @@ const Deneb = () => {
                 whileHover={{ y: -5 }}
               >
                 <Link href={`/Deneb/${day}`}>
-                  <div className={`text-3xl ${darkMode ? 'text-white' : 'text-white'}`}>{day}</div>
+                  <div className={`block w-full h-full text-center text-3xl ${darkMode ? 'text-white' : 'text-black'}`}>{day}</div>
                 </Link>
               </motion.div>
             </Card>

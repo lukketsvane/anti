@@ -58,9 +58,7 @@ export default function Home() {
                             {t('contact')}
                         </div>
                     </Link>
-                    <button onClick={toggleLanguage} className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
-                        {languageLabel}
-                    </button>
+
                     <Link href="/gallery">
                         <div className={`flex items-center text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
                             <Grid size={20} className="mr-2" />
@@ -81,28 +79,25 @@ export default function Home() {
       <div className={`hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
 
       <div className={`my-16 text-center ${animatePageElements ? 'animate-fade-in' : ''}`}>
-        <h2 className={`text-sm ${darkMode ? "text-white" : "text-black"}`}>
-          {t('intro')}{" "}
+        <h2 className={`text-lg md:text-xl ${darkMode ? "text-white" : "text-black"}`}>
+          Reach me on LinkedIn during the day, and GitHub at night{" "}
           <Link
             target="_blank"
             href="https://www.linkedin.com/in/iverfinne"
             className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
           >
-            {t('linkedin')}
+            LinkedIn
           </Link>{" "}
           <br />
-          {t('github')}{" "}
           <Link
             target="_blank"
             href="https://github.com/lukketsvane/"
             className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
           >
             GitHub
-          </Link>{" "}
-          {t('atNight')}
+          </Link>
         </h2>
-      </div>
-      {darkMode && <Constellation darkMode={darkMode} />}
+      </div>      {darkMode && <Constellation darkMode={darkMode} />}
     </div>
   );
 }
