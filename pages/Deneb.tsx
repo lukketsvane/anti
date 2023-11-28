@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Navigation } from '@/app/components/nav';
 import { Card } from '@/app/components/card';
+import Snowfall from '@/app/components/snowfall';
 
 const Deneb = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -36,10 +37,12 @@ const Deneb = () => {
     <>
       <Head>
         <title>Iver Finne - Portfolio</title>
+        <Snowfall className="fixed top-0 left-0 w-full h-full z-0" quantity={200} speed={1} />
+
         <link rel="stylesheet" href="../global.css" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
-
+\
       <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
       <div className={`flex flex-col items-center pt-16 justify-center w-screen min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
