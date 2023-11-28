@@ -33,28 +33,6 @@ anti
  ┃ ┃ ┣ syntografi-10.mdx
  ┃ ┃ ┣ syntografi-11.mdx
  ┃ ┃ ┣ syntografi-12.mdx
- ┃ ┃ ┣ syntografi-13.mdx
- ┃ ┃ ┣ syntografi-14.mdx
- ┃ ┃ ┣ syntografi-15.mdx
- ┃ ┃ ┣ syntografi-16.mdx
- ┃ ┃ ┣ syntografi-17.mdx
- ┃ ┃ ┣ syntografi-18.mdx
- ┃ ┃ ┣ syntografi-19.mdx
- ┃ ┃ ┣ syntografi-2.mdx
- ┃ ┃ ┣ syntografi-20.mdx
- ┃ ┃ ┣ syntografi-21.mdx
- ┃ ┃ ┣ syntografi-22.mdx
- ┃ ┃ ┣ syntografi-23.mdx
- ┃ ┃ ┣ syntografi-24.mdx
- ┃ ┃ ┣ syntografi-25.mdx
- ┃ ┃ ┣ syntografi-26.mdx
- ┃ ┃ ┣ syntografi-27.mdx
- ┃ ┃ ┣ syntografi-28.mdx
- ┃ ┃ ┣ syntografi-3.mdx
- ┃ ┃ ┣ syntografi-4.mdx
- ┃ ┃ ┣ syntografi-5.mdx
- ┃ ┃ ┣ syntografi-6.mdx
- ┃ ┃ ┣ syntografi-7.mdx
  ┃ ┃ ┣ syntografi-8.mdx
  ┃ ┃ ┗ syntografi-9.mdx
  ┃ ┗ projects
