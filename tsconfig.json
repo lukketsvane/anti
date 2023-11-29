@@ -39,7 +39,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "util/twitterApi.js"  ],
   "exclude": [
     "node_modules"
   ]

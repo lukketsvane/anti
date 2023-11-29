@@ -6,6 +6,8 @@ import { Moon, Sun, Grid } from "lucide-react";
 import Constellation from "./components/constellation";
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18n.config';
+import Timeline from './components/timeline';
+
 
 export default function Home() {
     const [darkMode, setDarkMode] = useState(false);
@@ -80,7 +82,7 @@ export default function Home() {
 
       <div className={`my-16 text-center ${animatePageElements ? 'animate-fade-in' : ''}`}>
         <h2 className={`text-lg text-500 md:text-xl ${darkMode ? "text-white" : "text-black"}`}>
-          Reach me on LinkedIn during the day, and GitHub at night{" "}
+          Reach me on{" "}
           <Link
             target="_blank"
             href="https://www.linkedin.com/in/iverfinne"
@@ -88,6 +90,7 @@ export default function Home() {
           >
             LinkedIn
           </Link>{" "}
+          during the day, and
           <br />
           <Link
             target="_blank"
@@ -96,7 +99,10 @@ export default function Home() {
           >
             GitHub
           </Link>
+          at night
         </h2>
+        <Timeline />
+
       </div>      {darkMode && <Constellation darkMode={darkMode} />}
     </div>
   );
