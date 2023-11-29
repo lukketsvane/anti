@@ -55,7 +55,7 @@ const Deneb = () => {
                 whileHover={{ y: -5 }}
               >
                 <Link href={`/Deneb/${day}`}>
-                  <div className={`block w-full h-full text-center text-3xl ${darkMode ? 'text-white' : 'text-black'}`}>{day}</div>
+                  <div className={`block w-full h-full text-center text-3xl ${darkMode ? 'text-white' : 'text-white'}`}>{day}</div>
                 </Link>
               </motion.div>
             </Card>

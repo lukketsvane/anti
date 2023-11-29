@@ -25,7 +25,7 @@ const ProjectFeaturePage = () => {
   // Placeholder for project data fetching logic which needs to be implemented
   const projectData = {
     title: `Project Title ${projectId}`,
-    headerImageUrl: '/path-to-your-header-image.jpg', // Replace with actual header image path
+    headerImageUrl: '/emberlight-concept-1.jpg', // Replace with actual header image path
     content: 'This is a lot of text...', // Replace with actual text content
     floatingImages: [
       '/cover-art_2.png', // Replace with actual floating image paths
