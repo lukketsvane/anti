@@ -1,4 +1,3 @@
-// util/twitterApi.ts
 import axios from 'axios';
 
 const twitterApi = axios.create({

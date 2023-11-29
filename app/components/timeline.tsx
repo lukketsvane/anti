@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 interface Tweet {
   id: string;
@@ -8,54 +7,39 @@ interface Tweet {
 
 const Timeline: React.FC = () => {
   const [tweets, setTweets] = useState<Tweet[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
-    fetch('/api/twitter')
-      .then((response) => {
+    const fetchTweets = async () => {
+      try {
+        const response = await fetch('/api/twitter');
         if (!response.ok) {
-          throw new Error('Problem fetching tweets');
+          throw new Error(await response.text());
         }
-        return response.json();
-      })
-      .then((data) => {
-        setTweets(data.data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+        const tweetsData = await response.json();
+        setTweets(tweetsData.data);
+      } catch (err) {
+        setError((err as Error).message);
+      }
+    };
+
+    fetchTweets();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!tweets) {
-    return <div>No tweets available.</div>;
-  }
 
   return (
-    <div className="space-y-4">
-      {tweets.map((tweet) => (
-        <motion.div
-          key={tweet.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="p-4 shadow rounded bg-white"
-        >
-          <p className="text-gray-800">{tweet.text}</p>
-        </motion.div>
-      ))}
+    <div className="divide-y divide-gray-200">
+      {error ? (
+        <p className="py-4 text-center text-red-500">{error}</p>
+      ) : tweets.length > 0 ? (
+        tweets.map((tweet) => (
+          <div key={tweet.id} className="py-4">
+            <p className="text-gray-700">{tweet.text}</p>
+          </div>
+        ))
+      ) : (
+        <p className="py-4 text-center text-gray-500">No tweets to display.</p>
+      )}
     </div>
   );
 };
