@@ -101,7 +101,6 @@ export default function Home() {
           </Link>
            at night
         </h2>
-        <Timeline username="amitoser" />
 
       </div>      {darkMode && <Constellation darkMode={darkMode} />}
     </div>
