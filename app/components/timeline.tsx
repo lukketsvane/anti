@@ -1,3 +1,5 @@
+// components/Timeline.tsx
+
 import React, { useEffect, useState } from 'react';
 
 interface Tweet {
@@ -5,41 +7,43 @@ interface Tweet {
   text: string;
 }
 
-const Timeline: React.FC = () => {
+const Timeline: React.FC<{ username: string }> = ({ username }) => {
   const [tweets, setTweets] = useState<Tweet[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchTweets = async () => {
-      try {
-        const response = await fetch('/api/twitter');
-        if (!response.ok) {
-          throw new Error(await response.text());
+    setLoading(true);
+    fetch(`/api/twitter?username=${username}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch tweets');
         }
-        const tweetsData = await response.json();
-        setTweets(tweetsData.data);
-      } catch (err) {
-        setError((err as Error).message);
-      }
-    };
+        return res.json();
+      })
+      .then((data) => {
+        if (data && data.data) {
+          setTweets(data.data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [username]);
 
-    fetchTweets();
-  }, []);
-
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (tweets.length === 0) return <div>No tweets to display</div>;
 
   return (
     <div className="divide-y divide-gray-200">
-      {error ? (
-        <p className="py-4 text-center text-red-500">{error}</p>
-      ) : tweets.length > 0 ? (
-        tweets.map((tweet) => (
-          <div key={tweet.id} className="py-4">
-            <p className="text-gray-700">{tweet.text}</p>
-          </div>
-        ))
-      ) : (
-        <p className="py-4 text-center text-gray-500">No tweets to display.</p>
-      )}
+      {tweets.map((tweet) => (
+        <div key={tweet.id} className="p-4">
+          <p className="text-gray-700">{tweet.text}</p>
+        </div>
+      ))}
     </div>
   );
 };

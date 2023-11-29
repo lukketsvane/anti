@@ -97,11 +97,11 @@ export default function Home() {
             href="https://github.com/lukketsvane/"
             className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
           >
-            GitHub
+            GitHub 
           </Link>
-          at night
+           at night
         </h2>
-        <Timeline />
+        <Timeline username="amitoser" />
 
       </div>      {darkMode && <Constellation darkMode={darkMode} />}
     </div>

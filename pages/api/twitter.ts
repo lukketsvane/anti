@@ -1,26 +1,30 @@
+"use client";
 // pages/api/twitter.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Make sure you pass the authorization header from your environment variables
-  const headersConfig = {
+  const username = req.query.username as string;
+
+  if (!process.env.TWITTER_BEARER_TOKEN) {
+    return res.status(500).json({ error: 'Twitter Bearer Token is not configured.' });
+  }
+
+  const twitterApi = axios.create({
+    baseURL: 'https://api.twitter.com/2',
     headers: {
       Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
     },
-  };
+  });
 
   try {
-    // Fetch the user ID using Twitter username
-    const { data: userData } = await axios.get(`https://api.twitter.com/2/users/by/username/amitoser`, headersConfig);
-    const userId = userData.data.id;
-    // Fetch tweets using the user ID
-    const tweetsResponse = await axios.get(`https://api.twitter.com/2/users/${userId}/tweets`, headersConfig);
-    // Respond with fetched tweets
+    const userResponse = await twitterApi.get(`/users/by/username/${username}`);
+    const userId = userResponse.data.data.id;
+    const tweetsResponse = await twitterApi.get(`/users/${userId}/tweets`);
     res.status(200).json(tweetsResponse.data);
   } catch (error) {
-    console.error('Twitter API Error:', error.response?.data || error.message);
-    res.status(error.response?.status || 500).json({
+    console.error('Error fetching tweets:', error.response?.data || error.message);
+    res.status(500).json({
       error: 'Failed to fetch tweets',
       details: error.response?.data || error.message,
     });
