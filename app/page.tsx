@@ -90,18 +90,16 @@ export default function Home() {
           >
             LinkedIn
           </Link>{" "}
-          during the day, and
-          <br />
+          during the day, and{" "}
           <Link
             target="_blank"
             href="https://github.com/lukketsvane/"
             className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
           >
-            GitHub 
-          </Link>
-           at night
+            GitHub
+          </Link>{" "}
+          at night.
         </h2>
-
       </div>      {darkMode && <Constellation darkMode={darkMode} />}
     </div>
   );
