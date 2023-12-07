@@ -81,25 +81,26 @@ export default function Home() {
       <div className={`hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
 
       <div className={`my-16 text-center ${animatePageElements ? 'animate-fade-in' : ''}`}>
-        <h2 className={`text-lg text-500 md:text-xl ${darkMode ? "text-white" : "text-black"}`}>
-          Reach me on{" "}
-          <Link
-            target="_blank"
-            href="https://www.linkedin.com/in/iverfinne"
-            className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
-          >
-            LinkedIn
-          </Link>{" "}
-          during the day, and{" "}
-          <Link
-            target="_blank"
-            href="https://github.com/lukketsvane/"
-            className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
-          >
-            GitHub
-          </Link>{" "}
-          at night.
-        </h2>
+  <h2 className={`text-lg text-500 md:text-xl ${darkMode ? "text-white" : "text-black"}`}>
+    Reach me on{" "}
+    <Link
+      target="_blank"
+      href="https://www.linkedin.com/in/iverfinne"
+      className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
+    >
+      LinkedIn
+    </Link>{" "}
+    during the day,<br /> {/* Added line break here */}
+    and{" "}
+    <Link
+      target="_blank"
+      href="https://github.com/lukketsvane/"
+      className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
+    >
+      GitHub
+    </Link>{" "}
+    at night.
+  </h2>
       </div>      {darkMode && <Constellation darkMode={darkMode} />}
     </div>
   );

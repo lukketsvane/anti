@@ -32,7 +32,7 @@ const Fawaris = () => {
 
             <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-            <div className={`pt-24 flex flex-col md:flex-row items-start justify-center min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+            <div className={`pt-24 flex flex-col md:flex-row items-start justify-center min-h-screen ${darkMode ? 'bg-black' : 'bg-white    '}`}>
 
 
                 <motion.div
