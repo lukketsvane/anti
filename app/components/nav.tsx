@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Moon, Sun, Grid, Home } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Grid } from "lucide-react";
 import Link from "next/link";
-import i18n from 'i18n.config';
-import { useTranslation } from 'react-i18next';
 
 interface NavigationProps {
   darkMode: boolean;
@@ -10,7 +8,6 @@ interface NavigationProps {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode }) => {
-  const { t } = useTranslation('common');
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
 
@@ -23,13 +20,6 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
 
   const handleBackClick = () => window.history.back();
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'no' : 'en';
-    i18n.changeLanguage(newLang);
-  };
-
-  const languageLabel = i18n.language === 'en' ? 'NO' : 'EN';
-
   return (
     <header ref={ref}>
       <div className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 ${darkMode ? "bg-zinc-900/75 border-b border-white text-white" : "bg-white/75 border-b border-zinc-800 text-black"}`}>
@@ -38,12 +28,12 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
 
             <Link href="/projects">
               <div className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
-                {t('projects')}
+                Projects
               </div>
             </Link>
             <Link href="/contact">
               <div className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
-                {t('contact')}
+                Contact
               </div>
             </Link>
             <Link href="/gallery">

@@ -1,28 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Navigation } from '../components/nav'; 
-import { useTranslation } from 'react-i18next';
+import { Navigation } from '../components/nav';
 
 export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
-  const [darkMode, setDarkMode] = useState(true); 
-  const { i18n } = useTranslation(); 
+  const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedMode = localStorage.getItem("dark-mode");
       setDarkMode(savedMode === "true");
     }
-
-    const handleLanguageChange = (lng) => {
-      console.log("Language changed to:", lng);
-    };
-
-    i18n.on('languageChanged', handleLanguageChange);
-
-    return () => {
-      i18n.off('languageChanged', handleLanguageChange);
-    };
-  }, [i18n]);
+  }, []);
 
   const toggleDarkMode = () => {
     localStorage.setItem("dark-mode", (!darkMode).toString());
