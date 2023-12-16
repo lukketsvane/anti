@@ -9,21 +9,21 @@ import i18n from 'i18n.config';
 import Timeline from './components/timeline';
 
 export default function Home() {
-    const [darkMode, setDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const [darkMode, setDarkMode] = useState(false);
     const [animateTitle, setAnimateTitle] = useState(false);
     const [animatePageElements, setAnimatePageElements] = useState(false);
 
     const { t } = useTranslation('common');
 
     useEffect(() => {
-        const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleChange = (event) => {
-            setDarkMode(event.matches);
-        };
-
-        darkModeListener.addEventListener('change', handleChange);
-
         if (typeof window !== 'undefined') {
+            const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
+            const handleChange = (event) => {
+                setDarkMode(event.matches);
+            };
+
+            darkModeListener.addEventListener('change', handleChange);
+
             const savedMode = localStorage.getItem('dark-mode');
 
             // Set dark mode based on user preference or system preference
@@ -34,11 +34,11 @@ export default function Home() {
                 setAnimatePageElements(true);
                 sessionStorage.setItem('page-visited', 'true');
             }
-        }
 
-        return () => {
-            darkModeListener.removeEventListener('change', handleChange);
-        };
+            return () => {
+                darkModeListener.removeEventListener('change', handleChange);
+            };
+        }
     }, []);
 
     const toggleDarkMode = () => {
