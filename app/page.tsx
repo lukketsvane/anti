@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import i18n from 'i18n.config';
 import Timeline from './components/timeline';
 
-
 export default function Home() {
     const [darkMode, setDarkMode] = useState(false);
     const [animateTitle, setAnimateTitle] = useState(false);
@@ -34,25 +33,14 @@ export default function Home() {
         setDarkMode(!darkMode);
     };
 
-    const toggleLanguage = () => {
-        const newLang = i18n.language === 'en' ? 'no' : 'en';
-        i18n.changeLanguage(newLang).then(() => {
-            // Handle language change if needed
-        });
-    };
-
-    const languageLabel = i18n.language ? i18n.language.toUpperCase() : 'EN';
-
     return (
         <div className="w-screen h-screen overflow-hidden">
             {/* Fixed Background with Gradient and Particles */}
             <div className={`fixed inset-0 ${darkMode ? "bg-gradient-to-tl from-black via-zinc-600/20 to-black" : "bg-white"} -z-10`}>
-                {darkMode && <Constellation darkMode={darkMode} />}
                 <Particles
                     className={`absolute inset-0 animate-fade-in ${darkMode ? "text-white" : "text-black"}`}
                     quantity={100}
                 />
-
             </div>
 
             {/* Scrollable Content */}
@@ -106,6 +94,7 @@ export default function Home() {
                         at night.
                     </h2>
                 </div>
+                {darkMode && <Constellation darkMode={darkMode} />}
             </div>
         </div>
     );
