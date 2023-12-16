@@ -4,37 +4,31 @@ import React, { useEffect, useState } from "react";
 import Particles from "./components/particles";
 import { Moon, Sun, Grid } from "lucide-react";
 import Constellation from "./components/constellation";
-import Timeline from './components/timeline';
 
 export default function Home() {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
     const [animateTitle, setAnimateTitle] = useState(false);
     const [animatePageElements, setAnimatePageElements] = useState(false);
 
     useEffect(() => {
+        const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleChange = (event) => {
+            setDarkMode(event.matches);
+        };
+
+        darkModeListener.addEventListener('change', handleChange);
+
         if (typeof window !== 'undefined') {
-            const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
-            const handleChange = (event) => {
-                setDarkMode(event.matches);
-            };
-
-            darkModeListener.addEventListener('change', handleChange);
-
-            const savedMode = localStorage.getItem('dark-mode');
-
-            // Set dark mode based on user preference or system preference
-            setDarkMode(savedMode === 'true' || darkModeListener.matches);
-
             if (!sessionStorage.getItem('page-visited')) {
                 setAnimateTitle(true);
                 setAnimatePageElements(true);
                 sessionStorage.setItem('page-visited', 'true');
             }
-
-            return () => {
-                darkModeListener.removeEventListener('change', handleChange);
-            };
         }
+
+        return () => {
+            darkModeListener.removeEventListener('change', handleChange);
+        };
     }, []);
 
     const toggleDarkMode = () => {

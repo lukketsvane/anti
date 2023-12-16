@@ -9,34 +9,34 @@ import { Eye } from "lucide-react";
 
 const redis = Redis.fromEnv();
 
-
 export const revalidate = 60;
+
 export default async function ProjectsPage() {
-	const views = (
-		await redis.mget<number[]>(
-			...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":")),
-		)
-	).reduce((acc, v, i) => {
-		acc[allProjects[i].slug] = v ?? 0;
-		return acc;
-	}, {} as Record<string, number>);
+  const views = (
+    await redis.mget<number[]>(
+      ...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":"))
+    )
+  ).reduce((acc, v, i) => {
+    acc[allProjects[i].slug] = v ?? 0;
+    return acc;
+  }, {} as Record<string, number>);
 
   const featured = allProjects.find((project) => project.slug === "emberlight")!;
   const top2 = allProjects.find((project) => project.slug === "storygen")!;
   const top3 = allProjects.find((project) => project.slug === "ygdrasyl")!;
-	const sorted = allProjects
-		.filter((p) => p.published)
-		.filter(
-			(project) =>
-				project.slug !== featured.slug &&
-				project.slug !== top2.slug &&
-				project.slug !== top3.slug,
-		)
-		.sort(
-			(a, b) =>
-				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
-				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
-		);
+  const sorted = allProjects
+    .filter((p) => p.published)
+    .filter(
+      (project) =>
+        project.slug !== featured.slug &&
+        project.slug !== top2.slug &&
+        project.slug !== top3.slug
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
+        new Date(a.date ?? Number.POSITIVE_INFINITY).getTime()
+    );
 
   return (
     <div className="relative pb-16">
@@ -46,9 +46,17 @@ export default async function ProjectsPage() {
             <Link href={`/projects/${featured.slug}`}>
               <article className="relative w-full h-full p-4 md:p-8">
                 <div className="flex items-center justify-between gap-2">
-                  <div className={`text-xs ${views[featured.slug] ? "text-zinc-100" : "text-zinc-400"}`}>
+                  <div
+                    className={`text-xs ${
+                      views[featured.slug]
+                        ? "text-zinc-100"
+                        : "text-zinc-400"
+                    }`}
+                  >
                     {featured.date ? (
-                      <time dateTime={new Date(featured.date).toISOString()}>
+                      <time
+                        dateTime={new Date(featured.date).toISOString()}
+                      >
                         {Intl.DateTimeFormat(undefined, {
                           dateStyle: "medium",
                         }).format(new Date(featured.date))}
@@ -57,7 +65,13 @@ export default async function ProjectsPage() {
                       <span>SOON</span>
                     )}
                   </div>
-                  <span className={`flex items-center gap-1 text-xs ${views[featured.slug] ? "text-zinc-500" : "text-zinc-400"}`}>
+                  <span
+                    className={`flex items-center gap-1 text-xs ${
+                      views[featured.slug]
+                        ? "text-zinc-500"
+                        : "text-zinc-400"
+                    }`}
+                  >
                     <Eye className="w-4 h-4" />{" "}
                     {Intl.NumberFormat("en-US", { notation: "compact" }).format(
                       views[featured.slug] ?? 0
@@ -71,14 +85,14 @@ export default async function ProjectsPage() {
                 >
                   {featured.title}
                 </h2>
-                <p
-                  className={`mt-4 leading-8`}
-                >
-                  {featured.description}
-                </p>
+                <p className={`mt-4 leading-8`}>{featured.description}</p>
                 <div className="absolute bottom-4 md:bottom-8">
                   <p
-                    className={`hidden ${views[featured.slug] ? "text-zinc-00 hover:text-zinc-5" : "hover:text-gray-800"} lg:block`}
+                    className={`hidden ${
+                      views[featured.slug]
+                        ? "text-zinc-00 hover:text-zinc-5"
+                        : "hover:text-gray-800"
+                    } lg:block`}
                   >
                     Read more <span aria-hidden="true">&rarr;</span>
                   </p>
