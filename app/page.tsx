@@ -44,64 +44,68 @@ export default function Home() {
     const languageLabel = i18n.language ? i18n.language.toUpperCase() : 'EN';
 
     return (
-        <div className={`flex flex-col items-center justify-center w-screen h-screen overflow-hidden ${darkMode ? "bg-gradient-to-tl from-black via-zinc-600/20 to-black" : "bg-white"}`}>
-            <nav className={`my-10 ${animatePageElements ? 'animate-fade-in' : ''}`}>
-                <ul className="flex items-center justify-center gap-4">
-                    <button onClick={toggleDarkMode}>
-                        {darkMode ? <Sun className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} /> : <Moon className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} />}
-                    </button>
-                    <Link href="/projects">
-                        <div className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
-                            {t('projects')}
-                        </div>
-                    </Link>
-                    <Link href="/contact">
-                        <div className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
-                            {t('contact')}
-                        </div>
-                    </Link>
+        <div className="w-screen h-screen overflow-hidden">
+            {/* Fixed Background with Gradient and Particles */}
+            <div className={`fixed inset-0 ${darkMode ? "bg-gradient-to-tl from-black via-zinc-600/20 to-black" : "bg-white"} -z-10`}>
+                <Particles
+                    className={`absolute inset-0 animate-fade-in ${darkMode ? "text-white" : "text-black"}`}
+                    quantity={100}
+                />
+                {darkMode && <Constellation darkMode={darkMode} />}
+            </div>
 
-                    <Link href="/gallery">
-                        <div className={`flex items-center text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
-                            <Grid size={20} className="mr-2" />
-                        </div>
-                    </Link>
-                </ul>
-            </nav>
+            {/* Scrollable Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+                <nav className={`my-10 ${animatePageElements ? 'animate-fade-in' : ''}`}>
+                    <ul className="flex items-center justify-center gap-4">
+                        <button onClick={toggleDarkMode}>
+                            {darkMode ? <Sun className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} /> : <Moon className={`w-6 h-6 ${darkMode ? "text-white" : "text-black"}`} />}
+                        </button>
+                        <Link href="/projects">
+                            <div className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
+                                {t('projects')}
+                            </div>
+                        </Link>
+                        <Link href="/contact">
+                            <div className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
+                                {t('contact')}
+                            </div>
+                        </Link>
+                        <Link href="/gallery">
+                            <div className={`flex items-center text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
+                                <Grid size={20} className="mr-2" />
+                            </div>
+                        </Link>
+                    </ul>
+                </nav>
 
+                <h1 className={`text-4xl text-transparent duration-1000 cursor-default text-edge-outline font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ${darkMode ? "bg-white" : "bg-black"} ${animateTitle ? 'animate-title' : ''}`}>
+                    {t('helloWorld')}
+                </h1>
 
-      <div className={`hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
-      <Particles
-        className={`absolute inset-0 -z-10 animate-fade-in ${darkMode ? "text-white" : "text-black"}`}
-        quantity={100}
-      />
-      <h1 className={`z-10 text-4xl text-transparent duration-1000 cursor-default text-edge-outline font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ${darkMode ? "bg-white" : "bg-black"} ${animateTitle ? 'animate-title' : ''}`}>
-        {t('helloWorld')}
-      </h1>
-      <div className={`hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r ${darkMode ? "from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" : "from-gray-300/0 via-gray-700/50 to-gray-300/0"}`} />
-
-      <div className={`my-16 text-center ${animatePageElements ? 'animate-fade-in' : ''}`}>
-  <h2 className={`text-lg text-500 md:text-xl ${darkMode ? "text-white" : "text-black"}`}>
-    Reach me on{" "}
-    <Link
-      target="_blank"
-      href="https://www.linkedin.com/in/iverfinne"
-      className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
-    >
-      LinkedIn
-    </Link>{" "}
-    during the day,<br /> {/* Added line break here */}
-    and{" "}
-    <Link
-      target="_blank"
-      href="https://github.com/lukketsvane/"
-      className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
-    >
-      GitHub
-    </Link>{" "}
-    at night.
-  </h2>
-      </div>      {darkMode && <Constellation darkMode={darkMode} />}
-    </div>
-  );
+                <div className={`my-16 text-center ${animatePageElements ? 'animate-fade-in' : ''}`}>
+                    <h2 className={`text-lg text-500 md:text-xl ${darkMode ? "text-white" : "text-black"}`}>
+                        Reach me on{" "}
+                        <Link
+                            target="_blank"
+                            href="https://www.linkedin.com/in/iverfinne"
+                            className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
+                        >
+                            LinkedIn
+                        </Link>{" "}
+                        during the day,<br />
+                        and{" "}
+                        <Link
+                            target="_blank"
+                            href="https://github.com/lukketsvane/"
+                            className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
+                        >
+                            GitHub
+                        </Link>{" "}
+                        at night.
+                    </h2>
+                </div>
+            </div>
+        </div>
+    );
 }

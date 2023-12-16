@@ -4,9 +4,9 @@
   "socials": [
     {
       "icon": "mail",
-      "href": "mailto:dev@iverfinne.no",
+      "href": "mailto:iverfinne@gmail.com",
       "label": "Email",
-      "handle": "dev@iverfinne.no"
+      "handle": "iverfinne@gmail.com"
     },
     {
       "icon": "github",
@@ -28,7 +28,7 @@
   "navContact": "Contact",
   "navHome": "Home",
   "contactTitle": "Contact",
-  "helloWorld": "Hello, World!",
+  "helloWorld": "Hello, World.!",
   "intro": "This is an introduction...",
   "linkedin": "LinkedIn",
   "github": "GitHub",
