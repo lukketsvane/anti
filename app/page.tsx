@@ -47,11 +47,12 @@ export default function Home() {
         <div className="w-screen h-screen overflow-hidden">
             {/* Fixed Background with Gradient and Particles */}
             <div className={`fixed inset-0 ${darkMode ? "bg-gradient-to-tl from-black via-zinc-600/20 to-black" : "bg-white"} -z-10`}>
+                {darkMode && <Constellation darkMode={darkMode} />}
                 <Particles
                     className={`absolute inset-0 animate-fade-in ${darkMode ? "text-white" : "text-black"}`}
                     quantity={100}
                 />
-                {darkMode && <Constellation darkMode={darkMode} />}
+
             </div>
 
             {/* Scrollable Content */}

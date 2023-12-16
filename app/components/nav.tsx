@@ -35,9 +35,6 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
       <div className={`fixed inset-x-0 top-0 z-50 backdrop-blur duration-200 ${darkMode ? "bg-zinc-900/75 border-b border-white text-white" : "bg-white/75 border-b border-zinc-800 text-black"}`}>
         <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
           <div className={`flex items-center justify-between gap-8 ${darkMode ? "text-white" : "text-black"}`}>
-            <button onClick={toggleDarkMode} className={`duration-200 ${darkMode ? "text-white" : "text-black"} focus:outline-none`}>
-              {darkMode ? <Sun size={24} /> : <Moon size={24} />}
-            </button>
 
             <Link href="/projects">
               <div className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
@@ -54,17 +51,15 @@ export const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode
                 <Grid size={20} className="mr-2" />
               </div>
             </Link>
+
+            <button onClick={toggleDarkMode} className={`duration-200 ${darkMode ? "text-white" : "text-black"} focus:outline-none`}>
+              {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+            </button>
+
           </div>
-          <div className="flex gap-4">
-            <Link href="/">
-              <div className={`duration-200 hover:text-zinc-100 ${darkMode ? "text-white" : "text-black"}`}>
-                <Home size={24} />
-              </div>
-            </Link>
             <button onClick={handleBackClick} className={`duration-200 ${darkMode ? "text-white" : "text-black"} hover:text-zinc-100`}>
               <ArrowLeft size={24} />
             </button>
-          </div>
         </div>
       </div>
     </header>
