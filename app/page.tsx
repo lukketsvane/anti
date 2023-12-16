@@ -4,26 +4,22 @@ import React, { useEffect, useState } from "react";
 import Particles from "./components/particles";
 import { Moon, Sun, Grid } from "lucide-react";
 import Constellation from "./components/constellation";
-import { useTranslation } from 'react-i18next';
-import i18n from 'i18n.config';
 import Timeline from './components/timeline';
 
 export default function Home() {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
     const [animateTitle, setAnimateTitle] = useState(false);
     const [animatePageElements, setAnimatePageElements] = useState(false);
 
-    const { t } = useTranslation('common');
-
     useEffect(() => {
+        const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleChange = (event) => {
+            setDarkMode(event.matches);
+        };
+
+        darkModeListener.addEventListener('change', handleChange);
+
         if (typeof window !== 'undefined') {
-            const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
-            const handleChange = (event) => {
-                setDarkMode(event.matches);
-            };
-
-            darkModeListener.addEventListener('change', handleChange);
-
             const savedMode = localStorage.getItem('dark-mode');
 
             // Set dark mode based on user preference or system preference
@@ -34,11 +30,11 @@ export default function Home() {
                 setAnimatePageElements(true);
                 sessionStorage.setItem('page-visited', 'true');
             }
-
-            return () => {
-                darkModeListener.removeEventListener('change', handleChange);
-            };
         }
+
+        return () => {
+            darkModeListener.removeEventListener('change', handleChange);
+        };
     }, []);
 
     const toggleDarkMode = () => {
@@ -66,12 +62,12 @@ export default function Home() {
                         </button>
                         <Link href="/projects">
                             <div className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
-                                {t('projects')}
+                                Projects
                             </div>
                         </Link>
                         <Link href="/contact">
                             <div className={`text-sm duration-500 ${darkMode ? "text-white hover:text-zinc-300" : "text-black hover:text-gray-700"}`}>
-                                {t('contact')}
+                                Contact
                             </div>
                         </Link>
                         <Link href="/gallery">
@@ -83,28 +79,28 @@ export default function Home() {
                 </nav>
 
                 <h1 className={`text-4xl text-transparent duration-1000 cursor-default text-edge-outline font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ${darkMode ? "bg-white" : "bg-black"} ${animateTitle ? 'animate-title' : ''}`}>
-                    {t('helloWorld')}
+                    Hello, World!
                 </h1>
 
                 <div className={`my-16 text-center ${animatePageElements ? 'animate-fade-in' : ''}`}>
                     <h2 className={`text-lg text-500 md:text-xl ${darkMode ? "text-white" : "text-black"}`}>
                         Reach me on{" "}
-                        <Link
+                        <a
                             target="_blank"
                             href="https://www.linkedin.com/in/iverfinne"
                             className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
                         >
                             LinkedIn
-                        </Link>{" "}
+                        </a>{" "}
                         during the day,<br />
                         and{" "}
-                        <Link
+                        <a
                             target="_blank"
                             href="https://github.com/lukketsvane/"
                             className={`underline duration-500 ${darkMode ? "hover:text-zinc-300" : "hover:text-gray-700"}`}
                         >
                             GitHub
-                        </Link>{" "}
+                        </a>{" "}
                         at night.
                     </h2>
                 </div>
