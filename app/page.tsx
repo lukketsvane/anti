@@ -9,21 +9,25 @@ import i18n from 'i18n.config';
 import Timeline from './components/timeline';
 
 export default function Home() {
-    const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    const [darkMode, setDarkMode] = useState(prefersDarkMode);
+    const [darkMode, setDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
     const [animateTitle, setAnimateTitle] = useState(false);
     const [animatePageElements, setAnimatePageElements] = useState(false);
 
     const { t } = useTranslation('common');
 
     useEffect(() => {
+        const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleChange = (event) => {
+            setDarkMode(event.matches);
+        };
+
+        darkModeListener.addEventListener('change', handleChange);
+
         if (typeof window !== 'undefined') {
             const savedMode = localStorage.getItem('dark-mode');
-            const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
             // Set dark mode based on user preference or system preference
-            setDarkMode(savedMode === 'true' || systemDarkMode);
+            setDarkMode(savedMode === 'true' || darkModeListener.matches);
 
             if (!sessionStorage.getItem('page-visited')) {
                 setAnimateTitle(true);
@@ -31,6 +35,10 @@ export default function Home() {
                 sessionStorage.setItem('page-visited', 'true');
             }
         }
+
+        return () => {
+            darkModeListener.removeEventListener('change', handleChange);
+        };
     }, []);
 
     const toggleDarkMode = () => {
