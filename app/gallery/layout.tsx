@@ -1,10 +1,7 @@
 "use client";
-
 import React, { useEffect, useState } from 'react';
 import { Sun, Moon, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import i18n from 'i18n.config'; // Import i18n config
-import { useTranslation } from 'react-i18next';
 
 const navigation = [
   { name: 'GitHub', href: '/github' },
@@ -19,7 +16,6 @@ type Props = {
 
 const GalleryLayout: React.FC<Props> = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
-  const { t } = useTranslation('common'); // Use the translation hook
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -33,11 +29,6 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
     setDarkMode(!darkMode);
   };
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'no' : 'en';
-    i18n.changeLanguage(newLang);
-  };
-
   return (
     <div className="flex">
       <div className={`sticky top-0 h-screen flex flex-col justify-between ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} p-4 w-1/4 max-w-xs`}>
@@ -49,12 +40,9 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
             <button onClick={toggleDarkMode} className={`mr-2 ${darkMode ? 'text-white' : 'text-black'}`}>
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            <button onClick={toggleLanguage} className={`${darkMode ? 'text-white' : 'text-black'}`}>
-              {i18n.language === 'en' ? 'NO' : 'EN'}
-            </button>
           </div>
-          <p className="font-bold">{t('synthographyTitle')}</p>
-          <p className="text-sm">{t('synthographyDescription')}</p>
+          <p className="font-bold">Synthography</p>
+          <p className="text-sm">Explore the vibrant world of Synthography, showcasing 40 unique digital creations. Each piece blends abstract forms with rich colors, designed for contemporary tastes. Enjoy this visually engaging collection, effortlessly presented for your viewing pleasure.</p>
         </div>
 
         <nav>
@@ -62,7 +50,7 @@ const GalleryLayout: React.FC<Props> = ({ children }) => {
             <div key={index} className="py-1">
               {index !== 0 && <hr className={`${darkMode ? 'border-gray-200' : 'border-gray-700'}`} />}
               <Link href={item.href}>
-                <div className="hover:underline">{t(`nav${item.name}`)}</div>
+                <div className="hover:underline">{item.name}</div>
               </Link>
             </div>
           ))}
