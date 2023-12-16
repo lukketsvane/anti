@@ -4,7 +4,6 @@ import { Github, Mail, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { Card } from '../components/card'; 
 import { Navigation } from '../components/nav';
-import { useTranslation } from 'react-i18next';
 
 // Define a type for your socials objects
 type Social = {
@@ -16,7 +15,6 @@ type Social = {
 
 export default function ContactPage() {
   const [darkMode, setDarkMode] = useState(false);
-  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -30,8 +28,27 @@ export default function ContactPage() {
     setDarkMode(!darkMode);
   };
 
-  // Get the socials data and type cast it as an array of Social objects
-  const socials: Social[] = t('socials', { returnObjects: true }) as Social[];
+  // Define the socials data using the provided information
+  const socials: Social[] = [
+    {
+      icon: "mail",
+      href: "mailto:iverfinne@gmail.com",
+      label: "Email",
+      handle: "iverfinne@gmail.com",
+    },
+    {
+      icon: "github",
+      href: "https://github.com/lukketsvane",
+      label: "Github",
+      handle: "lukketsvane",
+    },
+    {
+      icon: "linkedin",
+      href: "https://www.linkedin.com/in/iverfinne/",
+      label: "LinkedIn",
+      handle: "iverfinne",
+    },
+  ];
 
   return (
     <div className={`relative pt-16 min-h-screen ${darkMode ? 'bg-black' : 'bg-white'}`}>
@@ -40,10 +57,10 @@ export default function ContactPage() {
       <main className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
         <div className="max-w-2xl mx-auto lg:mx-0">
           <h1 className={`text-3xl font-bold tracking-tight sm:text-4xl ${darkMode ? 'text-white' : 'text-black'}`}>
-            {t('contactTitle')}
+            Contact
           </h1>
           <p className={`mt-4 ${darkMode ? 'text-gray-300' : 'text-zinc-400'}`}>
-            {t('contactDescription')}
+            Feel free to reach out to me through these platforms.
           </p>
         </div>
         <div className={`w-full h-px ${darkMode ? 'bg-gray-300' : 'bg-zinc-800'}`} />
@@ -54,7 +71,6 @@ export default function ContactPage() {
               <Link href={s.href} passHref>
                 <article className="p-4 md:p-8 group cursor-pointer">
                   <div className={`flex items-center justify-center w-12 h-12 text-sm border rounded-full group-hover:text-white group-hover:bg-zinc-900 ${darkMode ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-200 text-gray-600'}`}>
-                    {/* You'll need to convert icon strings to actual components */}
                     {s.icon === "mail" ? <Mail size={20} /> : s.icon === "github" ? <Github size={20} /> : <Linkedin size={20} />}
                   </div>
                   <div className="mt-4 text-center">
