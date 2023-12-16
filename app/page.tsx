@@ -9,7 +9,9 @@ import i18n from 'i18n.config';
 import Timeline from './components/timeline';
 
 export default function Home() {
-    const [darkMode, setDarkMode] = useState(false);
+    const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const [darkMode, setDarkMode] = useState(prefersDarkMode);
     const [animateTitle, setAnimateTitle] = useState(false);
     const [animatePageElements, setAnimatePageElements] = useState(false);
 
@@ -18,7 +20,10 @@ export default function Home() {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const savedMode = localStorage.getItem('dark-mode');
-            setDarkMode(savedMode === 'true');
+            const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Set dark mode based on user preference or system preference
+            setDarkMode(savedMode === 'true' || systemDarkMode);
 
             if (!sessionStorage.getItem('page-visited')) {
                 setAnimateTitle(true);
@@ -29,8 +34,9 @@ export default function Home() {
     }, []);
 
     const toggleDarkMode = () => {
-        localStorage.setItem('dark-mode', (!darkMode).toString());
-        setDarkMode(!darkMode);
+        const newDarkMode = !darkMode;
+        localStorage.setItem('dark-mode', newDarkMode.toString());
+        setDarkMode(newDarkMode);
     };
 
     return (
